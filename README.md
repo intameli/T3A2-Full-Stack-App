@@ -25,3 +25,7 @@ In order to complete this web application, we will be utilsiing the MERN stack. 
 - React: Is an extremely powerful JavaScript library which allows users to create dynamic and responsive front-ends for web applications. In our web application, it will be utilised to handle and maintain the front-end.
 
 - Node.js: Is a cross platform, open source JavaScript runtime environment. It allows for and executes JavaScript code outside of the web broswer and in combination with Express, will be utilised to create and maintain the API. 
+
+## R2 Dataflow Diagram
+
+![Image of Dataflow diagram](docs/dataFlowD.png)
