@@ -155,6 +155,8 @@ Mobile version looks identical but with hamburger menu
 
 ####
 
+<h2 style="text-align:center">R4 User Stories</h2>
+
 ## <h2 style="text-align:center" id="trello">Trello Board</h2>
 
 We have decided to use a Trello board to for the project management, which will see us utilize Agile Methodology, with a focus on SCRUM.
@@ -424,6 +426,8 @@ The following features make up our minimum viable product.
 ---
 
 </details>
+
+<h2 style="text-align:center">R6 Trello Board</h2>
 
 <h3 style="text-align:center">Trello Board Link</h3>
 
