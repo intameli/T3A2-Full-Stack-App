@@ -55,6 +55,8 @@ Conventions Used:
     - Blockers
     - Done
 
+---
+
 The following features make up our minimum viable product.
 
 <details>
@@ -82,7 +84,12 @@ The following features make up our minimum viable product.
                 3. Verify password criteria enforcement
                 4. Verify confirmation email is sent to user after registration
         Link: 
+        https://trello.com/c/tjuJ4cJB
+
+![User Registration](/docs/UserRegistration.png)
+
 ---    
+
         Story: User Login
 
             Description:
@@ -98,23 +105,36 @@ The following features make up our minimum viable product.
                 Verify an error message for incorrect credentials.
                 Verify user is redirected to the dashboard after login.
         Link:
+        https://trello.com/c/Fu77sCLd
+
+![User Login](/docs/UserLogin.png) 
+
 ---
+
         Story: Password Recovery
 
             Description:
+
                 As a user, I want to recover my password if I forget it.
 
             Acceptance Criteria:
+
                 1. User can request a password reset link.
                 2. Password reset link is sent to the user’s registered email.
                 3. User can reset the password using the link.
 
             Test Cases:
+
                 1. Verify password reset request with a valid email.
                 2. Verify password reset link is sent.
                 3. Verify the user can set a new password.
         Link:
+        https://trello.com/c/ymTLTmaE
+
+![Password Recovery](/docs/Password%20Recovery.png)
+
 ---
+
         Story: Profile Update
 
             Description:
@@ -130,6 +150,11 @@ The following features make up our minimum viable product.
                 2. Verify changes are saved correctly.
                 3. Verify password change functionality.
         Link:
+        https://trello.com/c/VZjvga0a
+
+![Profile Update](/docs/Profile%20Update.png)
+
+---
 
 </details>
 
@@ -146,6 +171,7 @@ The following features make up our minimum viable product.
     [x] Search and filter functionality by price
 
 ---
+
         Story: Tutor List
 
             Description:
@@ -163,7 +189,12 @@ The following features make up our minimum viable product.
                 2. Verify subjects and qualifications are displayed correctly.
 
         Link:
+        https://trello.com/c/3fMwBwCO
+
+![Tutor Listing](/docs/Tutor%20List.png)
+
 ---
+
         Story: Subject and Pricing Information
 
             Description:
@@ -181,7 +212,12 @@ The following features make up our minimum viable product.
                 2. Verify pricing information is accurate.
 
         Link:
+        https://trello.com/c/uql5btlj
+
+![Subject and Pricing Information](/docs/Subject%20and%20Pricing%20Information.png)
+
 ---
+
         Story: Search Tutors by Subject and Price
 
             Description:
@@ -200,6 +236,10 @@ The following features make up our minimum viable product.
                 3. Verify that the search results are accurate.
 
         Link:
+        https://trello.com/c/70WbcBK3
+
+![Search Tutors](/docs/Search%20Tutors%20by%20Subject%20and%20Price.png)
+
 ---
         Story: View Tutor Profile
 
@@ -217,12 +257,17 @@ The following features make up our minimum viable product.
                 1. Verify user can view tutor’s detailed profile.
                 2. Verify subjects and qualifications are displayed correctly.
 
-        Link:        
+        Link:
+        https://trello.com/c/qZ8lz0ML       
+
+![Tutor Profile](/docs/View%20Tutor%20Profile.png) 
+
+---
 
 </details>
 
 <details>
-<summary><h3>Feature: Business Owner/Admin Dasboard</h3></summary>
+<summary><h3>Feature: Business Owner/Admin Dashboard</h3></summary>
 
 <h4>Epics</h4>
 
@@ -245,8 +290,11 @@ The following features make up our minimum viable product.
                 3. Verify admin can update existing records.
                 4. Verify admin can delete records and that changes are logged.
         Link:
+        https://trello.com/c/cdJOKUmP
 
+![Manage Employment Records](/docs/Manage%20Employment%20Records.png)
 
+---
 
 </details>
 
