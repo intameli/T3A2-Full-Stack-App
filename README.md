@@ -696,6 +696,8 @@ The following features make up our minimum viable product.
 
 </details>
 
+---
+
 <h2 style="text-align:center">R6 Trello Board</h2>
 
 <a href="https://trello.com/b/wi2g4Wkf/full-stack-application" target="_blank">Trello Board - Full Stack Application</a>
