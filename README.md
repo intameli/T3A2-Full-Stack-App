@@ -7,9 +7,12 @@
 - [Target Audience](#audience)
 - [Tech Stack](#stack)
 - [Dataflow Diagram](#dataflow_diagram)
--[Trello](#trello)
+- [Trello](#trello)
 
-## <h2 style="text-align:center" id="purpose">Purpose</h2> 
+
+<h2 style="text-align:center"> R1 Description of Web Application</h2>
+
+<h2 style="text-align:center" id="purpose">Purpose</h2>
 
 Our client is a local small business, named Bright Academics who specialises in providing tutoring services to individuals at all levels of their education journey, however, they have a definite focus on individuals who are sitting their HSC or equivalent. Due to an increase in both the number of tutors who are employed, as well as an increase in clients, Bright Academics is in need of a full fledged web application which provides usefulness to both clients and admins through the same web application. This web application will provide ease of use and allow for business processes for Bright Academics to be enhanced and improved. 
 
@@ -33,8 +36,7 @@ In order to complete this web application, we will be utilsiing the MERN stack. 
 
 - Node.js: Is a cross platform, open source JavaScript runtime environment. It allows for and executes JavaScript code outside of the web broswer and in combination with Express, will be utilised to create and maintain the API. 
 
-## R2 Dataflow Diagram
-## <h2 style="text-align:center" id="dataflow_diagram">Dataflow Diagram</h2>
+## <h2 style="text-align:center" id="dataflow_diagram">R2 Dataflow Diagram</h2>
 
 ![Image of Dataflow diagram](docs/dataFlowD.png)
 
@@ -52,5 +54,41 @@ Conventions Used:
     - To-Do
     - Blockers
     - Done
+
+The following features make up our minimum viable product.
+
+<details>
+<summary><h3>Feature: User Authentication</h3></summary>
+
+<h4>Epics</h4>
+
+
+    [x] User Registration and Login
+    [x] Profile Management including password recovery
+
+</details>
+
+<details>
+<summary><h3>Feature: Tutor Listing</h3></summary>
+
+<h4>Epics</h4>
+
+    [x] Tutor Resume
+    [x] Subjects List
+    [x] Pricing
+    [x] Search and filter functionality by tutor
+    [x] Search and filter functionality by subject
+    [x] Search and filter functionality by price
+</details>
+
+<details>
+<summary><h3>Feature: Business Owner/Admin Dasboard</h3></summary>
+
+<h4>Epics</h4>
+
+    [x] Management Employment Records
+    [x] Admin/Overview of Site
+
+</details>
 
 <h3 style="text-align:center">Trello Board Link</h3>
