@@ -7,6 +7,7 @@
 - [Target Audience](#audience)
 - [Tech Stack](#stack)
 - [Dataflow Diagram](#dataflow_diagram)
+- [Application Architecture Diagram](#aad)
 - [Wireframes](#wireframes)
 - [Trello](#trello)
 
@@ -39,6 +40,10 @@ In order to complete this web application, we will be utilsiing the MERN stack. 
 ## <h2 style="text-align:center" id="dataflow_diagram">R2 Dataflow Diagram</h2>
 
 ![Image of Dataflow diagram](docs/dataFlowD.png)
+
+## <h2 style="text-align:center" id="aad">R3 Application Architecture Diagram</h2>
+
+![Application Architecture Diagram](docs/aad.png)
 
 <h2 style="text-align:center" id="wireframes">R5 Wireframes</h2>
 
