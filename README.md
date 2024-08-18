@@ -65,6 +65,71 @@ The following features make up our minimum viable product.
 
     [x] User Registration and Login
     [x] Profile Management including password recovery
+---
+        Story: User Registration
+        
+            Description: 
+                As new user, I want to register an account so that I can access the platform.
+
+            Acceptance Criteria: 
+                1. User Can register with a valide email and password
+                2. Password must meet best practices for security criteria
+                3. Confirmation email is sent to user after registration
+            
+            Test Cases:
+                1. Verify User can register with valid credentials
+                2.Verify an error message is shown for invalid email formats.
+                3. Verify password criteria enforcement
+                4. Verify confirmation email is sent to user after registration
+        Link: 
+---    
+        Story: User Login
+
+            Description:
+                As a registered user, I want to log in so that I can access my account.
+
+            Acceptance Criteria:
+                1. User can log in with a registered email and password.
+                2. Incorrect login attempts display an error message.
+                3. After successful login, the user is redirected to the dashboard.
+
+            Test Cases:
+                Verify user can log in with valid credentials.
+                Verify an error message for incorrect credentials.
+                Verify user is redirected to the dashboard after login.
+        Link:
+---
+        Story: Password Recovery
+
+            Description:
+                As a user, I want to recover my password if I forget it.
+
+            Acceptance Criteria:
+                1. User can request a password reset link.
+                2. Password reset link is sent to the user’s registered email.
+                3. User can reset the password using the link.
+
+            Test Cases:
+                1. Verify password reset request with a valid email.
+                2. Verify password reset link is sent.
+                3. Verify the user can set a new password.
+        Link:
+---
+        Story: Profile Update
+
+            Description:
+                As a user, I want to update my profile information.
+
+            Acceptance Criteria: 
+                1. User can update personal details such as name, email, and phone number.
+                2. User can change their password.
+                3. User changes are saved and reflected in the respective profile.
+
+            Test Cases:
+                1. Verify user can update profile details.
+                2. Verify changes are saved correctly.
+                3. Verify password change functionality.
+        Link:
 
 </details>
 
