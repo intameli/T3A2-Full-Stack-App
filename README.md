@@ -7,14 +7,14 @@
 - [Target Audience](#audience)
 - [Tech Stack](#stack)
 - [Dataflow Diagram](#dataflow_diagram)
+- [Wireframes](#wireframes)
 - [Trello](#trello)
-
 
 <h2 style="text-align:center"> R1 Description of Web Application</h2>
 
 <h2 style="text-align:center" id="purpose">Purpose</h2>
 
-Our client is a local small business, named Bright Academics who specialises in providing tutoring services to individuals at all levels of their education journey, however, they have a definite focus on individuals who are sitting their HSC or equivalent. Due to an increase in both the number of tutors who are employed, as well as an increase in clients, Bright Academics is in need of a full fledged web application which provides usefulness to both clients and admins through the same web application. This web application will provide ease of use and allow for business processes for Bright Academics to be enhanced and improved. 
+Our client is a local small business, named Bright Academics who specialises in providing tutoring services to individuals at all levels of their education journey, however, they have a definite focus on individuals who are sitting their HSC or equivalent. Due to an increase in both the number of tutors who are employed, as well as an increase in clients, Bright Academics is in need of a full fledged web application which provides usefulness to both clients and admins through the same web application. This web application will provide ease of use and allow for business processes for Bright Academics to be enhanced and improved.
 
 ## <h2 style="text-align:center" id="Features">Functionality / Features</h2>
 
@@ -22,11 +22,11 @@ Currently, at this point in time, this web application has three MVP's which wil
 
 ## <h2 style="text-align:center" id="audience">Target Audience</h2>
 
-There are two key groups of individuals in which this web application will be appealing. This is of course the admin of Bright Academics who will be able to update tutor profiles on the application and manage employment records of tutors through the web application. Another key audience of this web application are prospective and current clients of Bright Academics who are interested in viewing the services/pricing which is offered. This will be a multi purpose app which is able to be utilised by both audiences, however the way they do so will be different in nature. 
+There are two key groups of individuals in which this web application will be appealing. This is of course the admin of Bright Academics who will be able to update tutor profiles on the application and manage employment records of tutors through the web application. Another key audience of this web application are prospective and current clients of Bright Academics who are interested in viewing the services/pricing which is offered. This will be a multi purpose app which is able to be utilised by both audiences, however the way they do so will be different in nature.
 
 ## <h2 style="text-align:center" id="stack">Tech Stack</h2>
 
-In order to complete this web application, we will be utilsiing the MERN stack. This includes; MongoDB, Express, React and Node.JS. A description of each will be discussed below: 
+In order to complete this web application, we will be utilsiing the MERN stack. This includes; MongoDB, Express, React and Node.JS. A description of each will be discussed below:
 
 - MongoDB: A database management system which is considered to be a noSQL database. The data is stored in documents which further stored in collections. This will be uilised as the database for out web application.
 
@@ -34,15 +34,125 @@ In order to complete this web application, we will be utilsiing the MERN stack. 
 
 - React: Is an extremely powerful JavaScript library which allows users to create dynamic and responsive front-ends for web applications. In our web application, it will be utilised to handle and maintain the front-end.
 
-- Node.js: Is a cross platform, open source JavaScript runtime environment. It allows for and executes JavaScript code outside of the web broswer and in combination with Express, will be utilised to create and maintain the API. 
+- Node.js: Is a cross platform, open source JavaScript runtime environment. It allows for and executes JavaScript code outside of the web broswer and in combination with Express, will be utilised to create and maintain the API.
 
 ## <h2 style="text-align:center" id="dataflow_diagram">R2 Dataflow Diagram</h2>
 
 ![Image of Dataflow diagram](docs/dataFlowD.png)
 
+<h2 style="text-align:center" id="wireframes">R5 Wireframes</h2>
+
+<details>
+
+<summary>
+
+### Tutors List
+
+</summary>
+
+#### Desktop
+
+![tutors-desktop](docs/tutors-desktop.png)
+
+Clicking on a tutor card opens a modal with more information
+
+![modal-desktop](docs/modal-desktop.png)
+
+#### Mobile
+
+On mobile the desktop navbar is replaced by a hamburger menu. The menu has been opened in the image below
+
+![tutors-mobile](docs/tutors-mobile.png)
+
+The menu is closed and a modal is open in the image below
+
+![modal-mobile](docs/modal-mobile.png)
+
+</details>
+
+<details>
+
+<summary>
+
+### Dashboard
+
+</summary>
+
+#### Desktop
+
+Admin users will see a dashboard link in the navbar. Signed in users, whether or not they are admins, will see the profile link in the navbar instead of sign up and login links
+
+![dashboard-desktop](docs/dashboard-desktop.png)
+
+Similar to the view only tutors list, the dashboard also shows a modal when a card is clicked
+
+![dash-modal-desktop](docs/dash-modal-desktop.png)
+
+#### Mobile
+
+![dashboard-mobile](docs/dashboard-mobile.png)
+
+![dash-modal-mobile](docs/dash-modal-mobile.png)
+
+</details>
+
+<details>
+
+<summary>
+
+### Login
+
+</summary>
+
+#### Desktop
+
+![login-desktop](docs/login-desktop.png)
+
+Image above shows a message that would be displayed after the user has inputed a valid email adress with an associated account and clicked the reset password button
+
+Mobile version of this page is identical except for using a hamburger menu
+
+</details>
+
+<details>
+
+<summary>
+
+### Sign up
+
+</summary>
+
+#### Mobile
+
+![signup-mobile](docs/signup-mobile.png)
+
+Desktop version looks identical but with full navbar
+
+</details>
+
+<details>
+
+<summary>
+
+### Profile
+
+</summary>
+
+#### Desktop
+
+![profile-desktop](docs/profile-desktop.png)
+
+User is redirected to tutors list after pressing sign out button
+
+Mobile version looks identical but with hamburger menu
+
+</details>
+
+####
+
 ## <h2 style="text-align:center" id="trello">Trello Board</h2>
 
-We have decided to use a Trello board to for the project management, which will see us utilize Agile Methodology, with a focus on SCRUM. 
+We have decided to use a Trello board to for the project management, which will see us utilize Agile Methodology, with a focus on SCRUM.
 
 Conventions Used:
 
@@ -50,10 +160,10 @@ Conventions Used:
 - Within each Epic each story is prioritized according to requirements of the feature
 - A fourth label epic for cross-stories over the features.
 - Columns for:
-    - Backlog
-    - To-Do
-    - Blockers
-    - Done
+  - Backlog
+  - To-Do
+  - Blockers
+  - Done
 
 ---
 
@@ -64,32 +174,33 @@ The following features make up our minimum viable product.
 
 <h4>Epics</h4>
 
-
     [x] User Registration and Login
     [x] Profile Management including password recovery
+
 ---
+
         Story: User Registration
 
-            Description: 
+            Description:
                 As new user, I want to register an account so that I can access the platform.
 
-            Acceptance Criteria: 
+            Acceptance Criteria:
                 1. User Can register with a valide email and password
                 2. Password must meet best practices for security criteria
                 3. Confirmation email is sent to user after registration
-            
+
             Test Cases:
                 1. Verify User can register with valid credentials
                 2.Verify an error message is shown for invalid email formats.
                 3. Verify password criteria enforcement
                 4. Verify confirmation email is sent to user after registration
-        Link: 
+        Link:
         https://trello.com/c/tjuJ4cJB
 
 ![User Registration](/docs/UserRegistration.png)
 ![Testing - User Registration](/docs/Testing%20-%20User%20Registration.png)
 
----    
+---
 
         Story: User Login
 
@@ -108,8 +219,8 @@ The following features make up our minimum viable product.
         Link:
         https://trello.com/c/Fu77sCLd
 
-![User Login](/docs/UserLogin.png) 
-![Testing - User Login](/docs/Testing%20-%20User%20Login.png) 
+![User Login](/docs/UserLogin.png)
+![Testing - User Login](/docs/Testing%20-%20User%20Login.png)
 
 ---
 
@@ -134,7 +245,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/ymTLTmaE
 
 ![Password Recovery](/docs/Password%20Recovery.png)
-![Testing - Password Recovery](/docs/Testing%20-%20Password%20Recovery.png) 
+![Testing - Password Recovery](/docs/Testing%20-%20Password%20Recovery.png)
 
 ---
 
@@ -143,7 +254,7 @@ The following features make up our minimum viable product.
             Description:
                 As a user, I want to update my profile information.
 
-            Acceptance Criteria: 
+            Acceptance Criteria:
                 1. User can update personal details such as name, email, and phone number.
                 2. User can change their password.
                 3. User changes are saved and reflected in the respective profile.
@@ -156,7 +267,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/VZjvga0a
 
 ![Profile Update](/docs/Profile%20Update.png)
-![Testing - Profile Update](/docs/Testing%20-%20Profile%20Update.png) 
+![Testing - Profile Update](/docs/Testing%20-%20Profile%20Update.png)
 
 ---
 
@@ -182,7 +293,7 @@ The following features make up our minimum viable product.
 
                 As a user, I want to view a list of available tutors.
 
-            Acceptance Criteria: 
+            Acceptance Criteria:
 
                 1. Tutors are displayed with key details (name, subjects, pricing).
                 2. List is paginated (if dataset is large enough).
@@ -206,7 +317,7 @@ The following features make up our minimum viable product.
 
                 As a user, I want to view the subjects and pricing for each tutor.
 
-            Acceptance Criteria: 
+            Acceptance Criteria:
 
                 1. Subjects offered by tutors are listed with their respective pricing.
                 2. Users can view pricing for different subjects.
@@ -220,7 +331,8 @@ The following features make up our minimum viable product.
         https://trello.com/c/uql5btlj
 
 ![Subject and Pricing Information](/docs/Subject%20and%20Pricing%20Information.png)
-![Testing - Pricing](/docs/Testing%20-%20Subject%20and%20Pricing%20Information.png) 
+![Testing - Pricing](/docs/Testing%20-%20Subject%20and%20Pricing%20Information.png)
+
 ---
 
         Story: Search Tutors by Subject and Price
@@ -229,7 +341,7 @@ The following features make up our minimum viable product.
 
                 As a user, I want to search and filter tutors by subject and price.
 
-            Acceptance Criteria: 
+            Acceptance Criteria:
 
                 1. Users can search tutors by entering subject keywords.
                 2. Users can filter search results by price range.
@@ -244,16 +356,17 @@ The following features make up our minimum viable product.
         https://trello.com/c/70WbcBK3
 
 ![Search Tutors](/docs/Search%20Tutors%20by%20Subject%20and%20Price.png)
-![Testing - Search Tutors](/docs/Testing%20-%20Search%20Tutors%20by%20Subject%20and%20Price.png) 
+![Testing - Search Tutors](/docs/Testing%20-%20Search%20Tutors%20by%20Subject%20and%20Price.png)
 
 ---
+
         Story: View Tutor Profile
 
             Description:
 
                 As a user, I want to view the detailed profile/resume of a tutor.
 
-            Acceptance Criteria: 
+            Acceptance Criteria:
 
                 1. User can view tutor's full profile, including experience and qualifications.
                 2. User can see subjects taught by the tutor.
@@ -264,10 +377,10 @@ The following features make up our minimum viable product.
                 2. Verify subjects and qualifications are displayed correctly.
 
         Link:
-        https://trello.com/c/qZ8lz0ML       
+        https://trello.com/c/qZ8lz0ML
 
-![Tutor Profile](/docs/View%20Tutor%20Profile.png) 
-![Testing - Tutor Profile](/docs/Testing%20-%20View%20Tutor%20Profile.png) 
+![Tutor Profile](/docs/View%20Tutor%20Profile.png)
+![Testing - Tutor Profile](/docs/Testing%20-%20View%20Tutor%20Profile.png)
 
 ---
 
@@ -282,12 +395,13 @@ The following features make up our minimum viable product.
     [x] Admin/Overview of Site
 
 ---
+
         Story: Manage Employment Records
 
             Description:
                 As an admin, I want to manage employment records for tutors.
 
-            Acceptance Criteria: 
+            Acceptance Criteria:
                 1. Admin can C.R.U.D. Records.
                 2. All changes are logged accordingly.
 
@@ -300,7 +414,8 @@ The following features make up our minimum viable product.
         https://trello.com/c/cdJOKUmP
 
 ![Manage Employment Records](/docs/Manage%20Employment%20Records.png)
-![Testing - User Login](/docs/Testing%20-%20User%20Login.png) 
+![Testing - User Login](/docs/Testing%20-%20User%20Login.png)
+
 ---
 
 </details>
