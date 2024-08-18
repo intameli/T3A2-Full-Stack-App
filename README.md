@@ -67,7 +67,7 @@ The following features make up our minimum viable product.
     [x] Profile Management including password recovery
 ---
         Story: User Registration
-        
+
             Description: 
                 As new user, I want to register an account so that I can access the platform.
 
@@ -144,6 +144,81 @@ The following features make up our minimum viable product.
     [x] Search and filter functionality by tutor
     [x] Search and filter functionality by subject
     [x] Search and filter functionality by price
+
+---
+        Story: Tutor List
+
+            Description:
+
+                As a user, I want to view a list of available tutors.
+
+            Acceptance Criteria: 
+
+                1. Tutors are displayed with key details (name, subjects, pricing).
+                2. List is paginated (if dataset is large enough).
+
+            Test Cases:
+
+                1. Verify user can view tutor’s detailed profile.
+                2. Verify subjects and qualifications are displayed correctly.
+
+        Link:
+---
+        Story: Subject and Pricing Information
+
+            Description:
+
+                As a user, I want to view the subjects and pricing for each tutor.
+
+            Acceptance Criteria: 
+
+                1. Subjects offered by tutors are listed with their respective pricing.
+                2. Users can view pricing for different subjects.
+
+            Test Cases:
+
+                1. Verify subjects are listed with correct pricing.
+                2. Verify pricing information is accurate.
+
+        Link:
+---
+        Story: Search Tutors by Subject and Price
+
+            Description:
+
+                As a user, I want to search and filter tutors by subject and price.
+
+            Acceptance Criteria: 
+
+                1. Users can search tutors by entering subject keywords.
+                2. Users can filter search results by price range.
+
+            Test Cases:
+
+                1. Verify search functionality by subject.
+                2. Verify filter functionality by price.
+                3. Verify that the search results are accurate.
+
+        Link:
+---
+        Story: View Tutor Profile
+
+            Description:
+
+                As a user, I want to view the detailed profile/resume of a tutor.
+
+            Acceptance Criteria: 
+
+                1. User can view tutor's full profile, including experience and qualifications.
+                2. User can see subjects taught by the tutor.
+
+            Test Cases:
+
+                1. Verify user can view tutor’s detailed profile.
+                2. Verify subjects and qualifications are displayed correctly.
+
+        Link:        
+
 </details>
 
 <details>
@@ -154,6 +229,31 @@ The following features make up our minimum viable product.
     [x] Management Employment Records
     [x] Admin/Overview of Site
 
+---
+        Story: Manage Employment Records
+
+            Description:
+                As an admin, I want to manage employment records for tutors.
+
+            Acceptance Criteria: 
+                1. Admin can C.R.U.D. Records.
+                2. All changes are logged accordingly.
+
+            Test Cases:
+                1. Verify admin can view employment records.
+                2. Verify admin can add a new record.
+                3. Verify admin can update existing records.
+                4. Verify admin can delete records and that changes are logged.
+        Link:
+
+
+
 </details>
 
 <h3 style="text-align:center">Trello Board Link</h3>
+
+---
+
+<a href="https://trello.com/b/wi2g4Wkf/full-stack-application" target="_blank">Trello Board - Full Stack Application</a>
+
+---
