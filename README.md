@@ -87,6 +87,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/tjuJ4cJB
 
 ![User Registration](/docs/UserRegistration.png)
+![Testing - User Registration](/docs/Testing%20-%20User%20Registration.png)
 
 ---    
 
@@ -108,6 +109,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/Fu77sCLd
 
 ![User Login](/docs/UserLogin.png) 
+![Testing - User Login](/docs/Testing%20-%20User%20Login.png) 
 
 ---
 
@@ -132,6 +134,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/ymTLTmaE
 
 ![Password Recovery](/docs/Password%20Recovery.png)
+![Testing - Password Recovery](/docs/Testing%20-%20Password%20Recovery.png) 
 
 ---
 
@@ -153,6 +156,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/VZjvga0a
 
 ![Profile Update](/docs/Profile%20Update.png)
+![Testing - Profile Update](/docs/Testing%20-%20Profile%20Update.png) 
 
 ---
 
@@ -192,6 +196,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/3fMwBwCO
 
 ![Tutor Listing](/docs/Tutor%20List.png)
+![Testing - Tutor Listing](/docs/Testing%20-%20Tutor%20List.png)
 
 ---
 
@@ -215,7 +220,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/uql5btlj
 
 ![Subject and Pricing Information](/docs/Subject%20and%20Pricing%20Information.png)
-
+![Testing - Pricing](/docs/Testing%20-%20Subject%20and%20Pricing%20Information.png) 
 ---
 
         Story: Search Tutors by Subject and Price
@@ -239,6 +244,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/70WbcBK3
 
 ![Search Tutors](/docs/Search%20Tutors%20by%20Subject%20and%20Price.png)
+![Testing - Search Tutors](/docs/Testing%20-%20Search%20Tutors%20by%20Subject%20and%20Price.png) 
 
 ---
         Story: View Tutor Profile
@@ -261,6 +267,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/qZ8lz0ML       
 
 ![Tutor Profile](/docs/View%20Tutor%20Profile.png) 
+![Testing - Tutor Profile](/docs/Testing%20-%20View%20Tutor%20Profile.png) 
 
 ---
 
@@ -293,7 +300,7 @@ The following features make up our minimum viable product.
         https://trello.com/c/cdJOKUmP
 
 ![Manage Employment Records](/docs/Manage%20Employment%20Records.png)
-
+![Testing - User Login](/docs/Testing%20-%20User%20Login.png) 
 ---
 
 </details>
