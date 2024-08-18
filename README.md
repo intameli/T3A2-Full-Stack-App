@@ -84,7 +84,7 @@ Admin users will see a dashboard link in the navbar. Signed in users, whether or
 
 ![dashboard-desktop](docs/dashboard-desktop.png)
 
-Similar to the view only tutors list, the dashboard also shows a modal when a card is clicked
+Similar to the view only tutors list, the dashboard also shows a modal when a card or the new tutor button is clicked
 
 ![dash-modal-desktop](docs/dash-modal-desktop.png)
 
