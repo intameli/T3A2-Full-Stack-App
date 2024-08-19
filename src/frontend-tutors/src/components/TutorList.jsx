@@ -16,13 +16,13 @@ export function TutorList() {
   return (
     <div className="card-container">
       <div className="tutor-header">
-        <h3>Dashboard</h3>
+        <h3>All Tutors</h3>
         <h4 className="sort">Sort/Filter options</h4>
       </div>
-      <div className="add">
+      {/* <div className="add">
         <p>+</p>
         <div>Add new tutor</div>
-      </div>
+      </div> */}
       {tutors.map((tutor) => {
         return (
           <div className="card">
@@ -40,7 +40,7 @@ export function TutorList() {
         <div>Link to view tutors resume</div>
         <p>More details</p>
       </dialog> */}
-      <dialog>
+      {/* <dialog>
         <div className="x">x</div>
         <h3>Editable {tutors[0].name}</h3>
         <h3 className="rate">
@@ -51,7 +51,7 @@ export function TutorList() {
         <p>Editable about section</p>
         <div>Submit button</div>
         <div>Delete tutor</div>
-      </dialog>
+      </dialog> */}
     </div>
   );
 }

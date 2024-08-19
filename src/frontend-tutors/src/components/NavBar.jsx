@@ -35,9 +35,9 @@ const Links = () => {
   return (
     <>
       <NavLink to="/">Tutors</NavLink>
-      <NavLink to="/login">Profile</NavLink>
-      {/* <NavLink to="/signup">Sign Up</NavLink> */}
-      <NavLink to="/signup">Dashboard</NavLink>
+      <NavLink to="/login">Login</NavLink>
+      <NavLink to="/signup">Sign Up</NavLink>
+      {/* <NavLink to="/dash">Dashboard</NavLink> */}
     </>
   );
 };
