@@ -1,4 +1,5 @@
 const express = require('express')
+const Tutor = require('../models/tutorModel')
 const router = express.Router()
 
 
@@ -37,6 +38,15 @@ router.get('/:id', (req,res) => {
  *          200:
  *          description:  Sucessfully retrieved user
  */
+
+router.post('/', async (req,res) => {
+    const {firstName,lastName,homeNr,mobileNr} = req.body
+    try {
+        const tutor = await Tutor.create(firstName,lastName,homeNr,mobileNr)
+        res.status(200).json(tutor)
+    }catch (error){
+     res.status(400).json({error: error.message})
+    }
 router.post('/', (req,res) => {
     res.json({mssg: "Create a new Tutor"})
 })
