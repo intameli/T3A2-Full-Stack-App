@@ -75,5 +75,28 @@ router.post('/resetPassword', async (req, res) => {
 
 })
 
+router.post('/recoverPassword', async (req, res) => {
+    const { email } = req.body;
+
+    // Check if email exists
+    const user = await User.findOne({ email });
+    if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Generate random token
+    const token = crypto.randomBytes(20).toString('hex');
+
+    // Save token to user's database
+    user.resetToken = token;
+    user.resetTokenExpiration = Date.now() + 3600000; // 1 hour
+    await user.save();
+
+    // Send email with reset link
+    await sendResetEmail(user, token);
+
+    res.json({ message: 'Password reset link sent to your email' });
+})
+
 
 module.exports = router
