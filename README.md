@@ -430,5 +430,3 @@ Mobile version looks identical but with hamburger menu
 <a href="https://trello.com/b/wi2g4Wkf/full-stack-application" target="_blank">Trello Board - Full Stack Application</a>
 
 ---
-
-testing
