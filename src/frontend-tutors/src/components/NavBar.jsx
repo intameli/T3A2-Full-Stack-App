@@ -37,7 +37,7 @@ const Links = () => {
       <NavLink to="/">Tutors</NavLink>
       <NavLink to="/login">Login</NavLink>
       <NavLink to="/signup">Sign Up</NavLink>
-      {/* <NavLink to="/dash">Dashboard</NavLink> */}
+      <NavLink to="/dashboard">Dashboard</NavLink>
     </>
   );
 };

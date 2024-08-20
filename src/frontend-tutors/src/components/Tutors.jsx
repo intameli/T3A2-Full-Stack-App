@@ -1,26 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// test data
-const tutors = [
-  {
-    name: "Tutor 1 name",
-    rate: 35,
-    id: 0,
-  },
-  {
-    name: "Tutor 2 name",
-    rate: 40,
-    id: 1,
-  },
-  {
-    name: "Tutor 3 name",
-    rate: 30,
-    id: 2,
-  },
-];
-
-export function TutorCards() {
-  // this component needs a parent component to make it cleaner
+export function Tutors() {
   return (
     <div className="card-container">
       <div className="tutor-header">
@@ -32,8 +12,35 @@ export function TutorCards() {
         <div>Add new tutor</div>
       </div> */}
 
+      <TutorCards />
+    </div>
+  );
+}
+
+export function TutorCards() {
+  const [tutors, setTutors] = useState([]);
+
+  useEffect(() => {
+    async function fetchTutors() {
+      const response = await fetch("http://127.0.0.1:8000/api/tutor");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setTutors(data);
+    }
+    fetchTutors();
+  }, []);
+
+  return (
+    <>
+      {/* <div className="add">
+        <p>+</p>
+        <div>Add new tutor</div>
+      </div> */}
+
       {tutors.map((tutor) => {
-        return <TutorCard key={tutor.id} tutor={tutor} />;
+        return <TutorCard key={tutor._id} tutor={tutor} />;
       })}
 
       {/* <dialog>
@@ -48,7 +55,7 @@ export function TutorCards() {
         <div>Submit button</div>
         <div>Delete tutor</div>
       </dialog> */}
-    </div>
+    </>
   );
 }
 
@@ -79,9 +86,24 @@ function Modal({ setModalOpen, tutor }) {
       </button>
       <h3>{tutor.name}</h3>
       <h2 className="rate">${tutor.rate}/hr</h2>
-      <div>List of subjects the tutor teaches</div>
+      <Subjects subjects={tutor.subjects} />
       <div>Link to view tutors resume</div>
       <p>More details</p>
     </dialog>
+  );
+}
+
+export function Subjects({ subjects }) {
+  return (
+    <div>
+      <span style={{ fontWeight: "800" }}>Subjects: </span>
+      {subjects.map((s) => {
+        return (
+          <span key={s} className="subjects">
+            {s}
+          </span>
+        );
+      })}
+    </div>
   );
 }
