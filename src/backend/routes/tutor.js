@@ -13,6 +13,9 @@ const router = express.Router()
  */
 router.get('/', (req,res) => {
     res.json({mssg: "Retrieve all Tutors"})
+    // Implement logic to retrieve all tutors
+
+
 })
 
 /**

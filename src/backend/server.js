@@ -5,6 +5,7 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
 const userRoutes = require('./routes/user');
 const tutorRoutes = require('./routes/tutor');
+const authRoutes = require('./routes/auth');
 
 
 
@@ -48,9 +49,10 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/user', userRoutes)
 app.use('/api/tutor', tutorRoutes)
+app.use('/api/auth', authRoutes)
 
 
 // Port Listening 
-app.listen(process.env.PORT, () => {
-    console.log('Server is running on port', process.env.PORT)
+app.listen(4010, () => {
+    console.log('Server is running on port 4010')
 })
