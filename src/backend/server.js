@@ -1,11 +1,20 @@
 require('dotenv').config()
 
+
 const express = require('express')
 // const mongoose = require('mongoose')
 const swaggerJsDoc = require('swagger-jsdoc')
 const swaggerUI = require('swagger-ui-express')
 const userRoutes = require('./routes/user')
 const tutorRoutes = require('./routes/tutor')
+const express = require('express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
+const userRoutes = require('./routes/user');
+const tutorRoutes = require('./routes/tutor');
+
+
+
 
 // Creating express instance
 const app = express();
@@ -44,6 +53,7 @@ app.use((req, res, next) => {
     next()
 })
 
+
 // Routes
 app.use('/api/user', userRoutes)
 app.use('/api/tutor', tutorRoutes)
@@ -63,3 +73,12 @@ app.use('/api/tutor', tutorRoutes)
 app.listen(4000, function() {
     console.log("Server is running on port " + 4000);
 });
+// routes
+app.use('/api/user', userRoutes)
+app.use('/api/tutor', tutorRoutes)
+
+
+// Port Listening 
+app.listen(process.env.PORT, () => {
+    console.log('Server is running on port', process.env.PORT)
+})
