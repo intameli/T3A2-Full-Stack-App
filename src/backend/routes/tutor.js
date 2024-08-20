@@ -17,7 +17,7 @@ router.get('/', (req,res) => {
 
 /**
  *@swagger
- * /api/tutor/id:
+ * /api/tutor/{id}:
  *  get:
  *      description: Retrieve an individual tutor.
  *      responses:

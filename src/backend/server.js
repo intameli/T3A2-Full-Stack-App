@@ -13,15 +13,23 @@ const app = express();
 
 const swaggerOptions = {
     definition: {
+        openapi: "3.0.0",
         info: {
             title: 'API for Bright Academics Tutoring Services',
             version: '1.0.0',
             description: 'API Documentation for Student and Tutor Management System'
         },
     },
-        apis: ['./routes/user.js','./routes/tutor.js']
-    }
+        apis: ['./routes/user.js','./routes/tutor.js'],
+        tags: [{
+            name: 'User',
+            description: 'User Route'
+        },{
+            name: 'Tutor',
+            description: 'Tutor Route'
+        } ],
 
+    }
 
 // Swagger setup
 const swaggerDocs = swaggerJsDoc(swaggerOptions);

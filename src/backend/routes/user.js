@@ -11,19 +11,20 @@ const router = express.Router()
  *          200:
  *              description:  Sucessfully retrieved
  *          400:
- *              description: Failed to retreive  
+ *              description: Failed to retreive
+ * 
  */
 router.get('/', (req,res) => {
     res.send([
-        {id: 1, name: 'John Doe', email: 'john@example.com'},
-        {id: 2, name: 'Jane Doe', email: 'jane@example.com'},
-        {id: 3, name: 'Bob Smith', email: 'bob@example.com'}
+        {id: 1, name: 'John', lastName: 'Doe', email: 'john@example.com'},
+        {id: 2, name: 'Jane', lastName: 'Doe', email: 'jane@example.com'},
+        {id: 3, name: 'Bob', lastName: 'Smith', email: 'bob@example.com'}
     ])
 });
 
 /**
  *@swagger
- * /api/user/id:
+ * /api/user/{id}:
  *  get:
  *      description: Retrieve an individual user.
  *      responses:
@@ -41,6 +42,20 @@ router.get('/:id', (req,res) => {
  * /api/user:
  *  post:
  *      description: Create a new user.
+ *      parameters:
+ *          - name: First Name
+ *            description: Registrants First Name
+ *            required: true
+ *            type: string
+ *          - lastName: Last Name
+ *            description: Registrants Last Name
+ *            required: true
+ *            type: string
+ *          - userEmail: Contact Email
+ *            description: Registrants Email
+ *            required: true
+ *            type: null
+ * 
  *      responses:
  *          200:
  *          description:  Sucessfully retrieved user
