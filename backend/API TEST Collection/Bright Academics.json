@@ -1,0 +1,258 @@
+{
+  "name": "Bright Academics",
+  "version": "1",
+  "items": [
+    {
+      "type": "folder",
+      "name": "Tutors",
+      "items": [
+        {
+          "type": "http",
+          "name": "Retrieve all Tutors",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:4000/api/user",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Retrieve a single tutor",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:4000/api/user:id",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create a new tutor",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:4000/api/tutor",
+            "method": "POST",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete a Tutor",
+          "seq": 4,
+          "request": {
+            "url": "",
+            "method": "DELETE",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Update a Tutor",
+          "seq": 5,
+          "request": {
+            "url": "http://localhost:4000/api/user",
+            "method": "PATCH",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Users",
+      "items": [
+        {
+          "type": "http",
+          "name": "Retrieve all Users",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:4000/api/user",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Retrieve a single user",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:4000/api/user:id",
+            "method": "GET",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create a new user",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:4000/api/tutor",
+            "method": "POST",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete a User",
+          "seq": 4,
+          "request": {
+            "url": "",
+            "method": "DELETE",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        },
+        {
+          "type": "http",
+          "name": "Update a User",
+          "seq": 5,
+          "request": {
+            "url": "http://localhost:4000/api/user",
+            "method": "PATCH",
+            "headers": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "auth": {
+              "mode": "none"
+            },
+            "query": []
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "Bright Academics",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ]
+  }
+}
