@@ -19,7 +19,7 @@ const tutors = [
   },
 ];
 
-export function TutorList() {
+export function TutorCards() {
   // this component needs a parent component to make it cleaner
   return (
     <div className="card-container">
