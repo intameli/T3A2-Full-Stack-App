@@ -71,4 +71,32 @@ router.post('/login', async (req, res, next) => {
     }
 });
 
+router.post('/recoverAccount', async (req, res) => {
+    try {
+        const emailHome = req.body.email;
+
+        // Check if email is provided
+        if (!emailHome) {
+            return res.status(400).json({ message: 'Email is required' });
+        }
+
+        // Check if user exists
+        const user = await User.findOne({ email: emailHome });
+        if (!user) {
+            return res.status(401).json({ message: 'User not found' });
+        }
+
+        // Generate a unique reset token
+        const resetToken = jwt.sign({ _id: user._id },'resetToken123', { expiresIn: '10m' });
+
+        // Send email with reset link
+        //...
+
+        res.json({ status:'success', message: 'Recovery email sent successfully' });
+
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
+});
+
 module.exports = router;
