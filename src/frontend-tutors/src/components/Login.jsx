@@ -2,7 +2,7 @@ export function Login() {
   return (
     <div className="login">
       <h3>Login</h3>
-      <div>Username input</div>
+      <div>Username</div>
       <div>Password input</div>
       <div>Submit button</div>
       <div>Reset Password</div>
