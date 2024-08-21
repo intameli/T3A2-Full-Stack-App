@@ -5,6 +5,7 @@ const swaggerJsDoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
 const userRoutes = require("./routes/user");
 const tutorRoutes = require("./routes/tutor");
+const authRoutes = require("./routes/auth");
 const cors = require("cors");
 
 // Creating express instance
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/api/user", userRoutes);
 app.use("/api/tutor", tutorRoutes);
+app.use("/api/auth", authRoutes);
 
 // // DB Connection
 mongoose
