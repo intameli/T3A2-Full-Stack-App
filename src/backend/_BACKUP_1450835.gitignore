@@ -7,9 +7,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+<<<<<<< HEAD
 
 .env
 Requirements.md
+=======
+.env
+
+Requirements.md
+
+>>>>>>> main
 doc
 node_modules
 dist
@@ -17,6 +24,13 @@ dist-ssr
 *.local
 package-lock.json
 
+<<<<<<< HEAD
+=======
+helper
+.env.sample
+
+
+>>>>>>> main
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
