@@ -17,7 +17,8 @@ const userSchema = new Schema({
         work: {type: mongoose.SchemaTypes.Email, allowBlank: true},
         home: {type: mongoose.SchemaTypes.Email, required: true}
     },
-    mobileNr:{type: String, match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/, }
+    mobileNr:{type: String, match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/, },
+    password:{type: String, required: true}
 },{timestamps: true})
 
 module.exports = mongoose.model('User', userSchema)
