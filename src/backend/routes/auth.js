@@ -88,10 +88,28 @@ router.post('/recoverAccount', async (req, res) => {
         }
 
         // Generate a unique reset token
-        const resetToken = jwt.sign({ _id: user._id },'resetToken123', { expiresIn: '10m' });
+        const resetToken = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY, { expiresIn: '10m' });
 
         // Send email with reset link
-        //...
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: process.env.EMAIL_USER,
+                pass: process.env.EMAIL_PASSWORD
+            }
+        });
+
+        const mailOptions = {
+            from: 'noreply@brightacademics.com',
+            to: emailHome,
+            subject: 'Password Reset',
+            text: `You are receiving this email because you requested a password reset for your Bright Academics account.\n\n
+            Please click on the following link to reset your password: \n\n
+            http://${req.headers.host}/api/auth/resetPassword/${resetToken}\n\n
+            If you did not request this password reset, please ignore this email and your password will remain unchanged.\n`
+        };
+
+        await transporter.sendMail(mailOptions);
 
         res.json({ status:'success', message: 'Recovery email sent successfully' });
 
@@ -101,3 +119,34 @@ router.post('/recoverAccount', async (req, res) => {
 });
 
 module.exports = router;
+
+// Reset password route
+router.post('/resetPassword/:token', async (req, res) => {
+    try {
+        const token = req.params.token;
+
+        // Verify token
+        const data = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        if (!data) {
+            return res.status(400).json({ message: 'Invalid token' });
+        }
+
+        // Get user from token id
+        const user = await User.findById(data._id);
+        if (!user) {
+            return res.status(400).json({ message: 'User not found' });
+        }
+
+        // Hash new password
+        const hashedPassword = await bcrypt.hash(req.body.password, 12);
+
+        // Update user password
+        user.password = hashedPassword;
+        await user.save();
+
+        res.json({ status:'success', message: 'Password reset successfully' });
+
+    } catch (err) {
+        return res.status(500).json({ error: err.message })
+    }
+})
