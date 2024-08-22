@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { TutorCards, Subjects } from "./Tutors";
+import { TutorCards } from "./Tutors";
+import { Subjects } from "./TutorPage";
 
 export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -58,22 +59,23 @@ function DashModal({ setModalOpen }) {
 
   return (
     <dialog>
-      <button onClick={() => setModalOpen(false)} className="x">
-        x
-      </button>
       <input value={name} onChange={(e) => setName(e.target.value)} />
-      <h2 className="rate">
-        $<input value={rate} onChange={(e) => setRate(e.target.value)} />
-        /hr
-      </h2>
+      <button onClick={() => setModalOpen(false)} className="x">
+        Back
+      </button>
       <div>
         <input value={subject} onChange={(e) => setSubject(e.target.value)} />
         <button onClick={handleSubject}>Add subject</button>
       </div>
 
+      <h2 className="rate">
+        $<input value={rate} onChange={(e) => setRate(e.target.value)} />
+        /hr
+      </h2>
+
       <Subjects subjects={subjects} />
       <div>Upload tutors resume</div>
-      <p style={{ height: "145px" }}>TBD</p>
+      <p style={{ height: "120px" }}>TBD</p>
       <button
         onClick={handleSubmit}
         style={{ height: "2rem", alignSelf: "end" }}

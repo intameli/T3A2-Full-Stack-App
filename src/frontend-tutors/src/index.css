@@ -88,8 +88,6 @@ a:hover {
 }
 
 .x {
-  position: absolute;
-  right: 0;
   line-height: 0.8;
 }
 
@@ -99,16 +97,26 @@ dialog {
   margin-inline: auto;
   height: 350px;
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 5fr 1fr;
   gap: 0.5rem;
   border: 3px black solid;
 }
 
-dialog > div:nth-last-child(2) {
-  width: 150px;
+.tutorpage {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 0.5rem;
 }
 
-dialog div {
+.tutorpage > div:nth-last-child(2) {
+  width: 300px;
+}
+.tutorpage > div:nth-last-child(1) {
+  grid-column-start: 1;
+  height: 100px;
+}
+
+.tutorpage div {
   padding: 4px;
   border: 1px black solid;
 }

@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Subjects } from "./TutorPage";
+import { useNavigate } from "react-router-dom";
 
 export function Tutors() {
   return (
@@ -60,50 +62,16 @@ export function TutorCards() {
 }
 
 function TutorCard({ tutor }) {
-  const [modalOpen, setModalOpen] = useState(false);
-
+  const nav = useNavigate();
   function handleClick() {
-    setModalOpen(true);
+    nav(`/tutor/${tutor._id}`);
   }
 
   return (
-    <>
-      <div className="card" onClick={handleClick}>
-        <h3>{tutor.name}</h3>
-        <h2 className="rate">${tutor.rate}/hr</h2>
-        <p>Some details</p>
-      </div>
-      {modalOpen && <Modal setModalOpen={setModalOpen} tutor={tutor} />}
-    </>
-  );
-}
-
-function Modal({ setModalOpen, tutor }) {
-  return (
-    <dialog>
-      <button onClick={() => setModalOpen(false)} className="x">
-        x
-      </button>
+    <div className="card" onClick={handleClick}>
       <h3>{tutor.name}</h3>
       <h2 className="rate">${tutor.rate}/hr</h2>
       <Subjects subjects={tutor.subjects} />
-      <div>Link to view tutors resume</div>
-      <p>More details</p>
-    </dialog>
-  );
-}
-
-export function Subjects({ subjects }) {
-  return (
-    <div>
-      <span style={{ fontWeight: "800" }}>Subjects: </span>
-      {subjects.map((s) => {
-        return (
-          <span key={s} className="subjects">
-            {s}
-          </span>
-        );
-      })}
     </div>
   );
 }
