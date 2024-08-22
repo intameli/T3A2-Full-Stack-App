@@ -5,7 +5,6 @@ import { FaBars } from "react-icons/fa";
 
 export function NavBar({ user }) {
   const [menuOpen, setMenuOpen] = useState(false);
-  console.log(user);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -33,7 +32,6 @@ export function NavBar({ user }) {
 }
 
 const Links = ({ user }) => {
-  console.log(user);
   return (
     <>
       <NavLink to="/">Tutors</NavLink>

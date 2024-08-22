@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function SignUp() {
+export function SignUp({ setUser }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const nav = useNavigate();
+  const [error, setError] = useState(null);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,14 +24,16 @@ export function SignUp() {
           password: password,
         }),
       });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
       const data = await response.json();
-      localStorage.setItem("user", data.token);
+      if (response.ok) {
+        localStorage.setItem("user", data);
+        setUser(data);
+        nav("/profile");
+      } else {
+        setError(data.error);
+      }
     }
     signUp();
-    // nav("/dashboard");
   }
   return (
     <form onSubmit={handleSubmit} className="login">
@@ -61,6 +63,7 @@ export function SignUp() {
       </label>
 
       <button>Sign Up</button>
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </form>
   );
 }

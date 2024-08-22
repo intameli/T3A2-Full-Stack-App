@@ -17,10 +17,10 @@ function App() {
       <NavBar user={user} />
       <Routes>
         <Route path="/" element={<Tutors />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login setUser={setUser} />} />
+        <Route path="/signup" element={<SignUp setUser={setUser} />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile setUser={setUser} />} />
       </Routes>
     </>
   );
