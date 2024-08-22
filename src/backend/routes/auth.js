@@ -2,6 +2,7 @@ const express = require("express");
 const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
+const nodemailer = require('nodemailer')
 
 const router = express.Router();
 
@@ -27,7 +28,7 @@ router.post('/signup', async (req, res, next) => {
         });
 
         // Generate JWT
-        const token = jwt.sign({ _id: newUser._id }, 'secretkey123', {
+        const token = jwt.sign({ _id: newUser._id }, process.env.JWT_SECRET_KEY, {
             expiresIn: '1h'
         });
 
@@ -61,7 +62,7 @@ router.post('/login', async (req, res, next) => {
         }
 
         // Generate JWT
-        const token = jwt.sign({ _id: user._id },'secretkey123', {
+        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY, {
             expiresIn: '1h'
         })
 
