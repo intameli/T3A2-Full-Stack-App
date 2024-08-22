@@ -1,36 +1,13 @@
-import { useState, useEffect } from "react";
-import { TutorCards } from "./Tutors";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Subjects } from "./TutorPage";
-import { useNavigate } from "react-router-dom";
 
-export function Dashboard() {
-  const nav = useNavigate();
-
-  function handleClick(id) {
-    nav(`/dashboard/${id}`);
-  }
-  return (
-    <div className="card-container">
-      <div className="tutor-header">
-        <h3>Dashboard</h3>
-        <h4 className="sort">Sort/Filter options</h4>
-      </div>
-      <div className="add">
-        <p style={{ cursor: "pointer" }} onClick={() => nav(`/dashboard/new`)}>
-          +
-        </p>
-        <div>Add new tutor</div>
-      </div>
-      <TutorCards handleClick={handleClick} />
-    </div>
-  );
-}
-
-function DashModal({ setModalOpen }) {
+export function TutorEdit() {
   const [name, setName] = useState("Enter name here");
   const [subject, setSubject] = useState("");
   const [subjects, setSubjects] = useState([]);
   const [rate, setRate] = useState(0);
+  const nav = useNavigate();
 
   function handleSubject() {
     setSubjects([...subjects, subject]);
@@ -55,18 +32,19 @@ function DashModal({ setModalOpen }) {
     }
 
     const data = await response.json();
-    setModalOpen(false);
+    nav(-1);
   }
 
   return (
-    <dialog>
+    <div className="tutorpage">
       <input value={name} onChange={(e) => setName(e.target.value)} />
-      <button onClick={() => setModalOpen(false)} className="x">
+      <button onClick={() => nav(-1)} className="x">
         Back
       </button>
       <div>
         <input value={subject} onChange={(e) => setSubject(e.target.value)} />
         <button onClick={handleSubject}>Add subject</button>
+        <Subjects subjects={subjects} />
       </div>
 
       <h2 className="rate">
@@ -74,7 +52,6 @@ function DashModal({ setModalOpen }) {
         /hr
       </h2>
 
-      <Subjects subjects={subjects} />
       <div>Upload tutors resume</div>
       <p style={{ height: "120px" }}>TBD</p>
       <button
@@ -83,6 +60,6 @@ function DashModal({ setModalOpen }) {
       >
         Submit
       </button>
-    </dialog>
+    </div>
   );
 }

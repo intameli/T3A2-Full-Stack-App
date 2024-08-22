@@ -3,6 +3,11 @@ import { Subjects } from "./TutorPage";
 import { useNavigate } from "react-router-dom";
 
 export function Tutors() {
+  const nav = useNavigate();
+
+  function handleClick(id) {
+    nav(`/tutor/${id}`);
+  }
   return (
     <div className="card-container">
       <div className="tutor-header">
@@ -14,12 +19,12 @@ export function Tutors() {
         <div>Add new tutor</div>
       </div> */}
 
-      <TutorCards />
+      <TutorCards handleClick={handleClick} />
     </div>
   );
 }
 
-export function TutorCards() {
+export function TutorCards({ handleClick }) {
   const [tutors, setTutors] = useState([]);
 
   useEffect(() => {
@@ -36,39 +41,18 @@ export function TutorCards() {
 
   return (
     <>
-      {/* <div className="add">
-        <p>+</p>
-        <div>Add new tutor</div>
-      </div> */}
-
       {tutors.map((tutor) => {
-        return <TutorCard key={tutor._id} tutor={tutor} />;
+        return (
+          <TutorCard key={tutor._id} tutor={tutor} handleClick={handleClick} />
+        );
       })}
-
-      {/* <dialog>
-        <div className="x">x</div>
-        <h3>Editable {tutors[0].name}</h3>
-        <h3 className="rate">
-          <div>Editable rate</div>
-        </h3>
-        <div>Editable list of subjects the tutor teaches</div>
-        <div>Resume upload component</div>
-        <p>Editable about section</p>
-        <div>Submit button</div>
-        <div>Delete tutor</div>
-      </dialog> */}
     </>
   );
 }
 
-function TutorCard({ tutor }) {
-  const nav = useNavigate();
-  function handleClick() {
-    nav(`/tutor/${tutor._id}`);
-  }
-
+function TutorCard({ tutor, handleClick }) {
   return (
-    <div className="card" onClick={handleClick}>
+    <div className="card" onClick={() => handleClick(tutor._id)}>
       <h3>{tutor.name}</h3>
       <h2 className="rate">${tutor.rate}/hr</h2>
       <Subjects subjects={tutor.subjects} />

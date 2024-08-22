@@ -28,12 +28,13 @@ export function TutorPage() {
 }
 
 export function Subjects({ subjects }) {
+  let i = 1;
   return (
     <div>
       <span style={{ fontWeight: "800" }}>Subjects: </span>
       {subjects.map((s) => {
         return (
-          <span key={s} className="subjects">
+          <span key={i++} className="subjects">
             {s}
           </span>
         );

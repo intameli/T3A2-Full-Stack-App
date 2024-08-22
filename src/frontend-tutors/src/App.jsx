@@ -6,6 +6,7 @@ import { Profile } from "./components/Profile";
 import { SignUp } from "./components/SignUp";
 import { Dashboard } from "./components/Dashboard";
 import { TutorPage } from "./components/TutorPage";
+import { TutorEdit } from "./components/TutorEdit";
 import { useState } from "react";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile setUser={setUser} />} />
         <Route path="/tutor/:id" element={<TutorPage />} />
+        <Route path="/dashboard/:id" element={<TutorEdit />} />
       </Routes>
     </>
   );
