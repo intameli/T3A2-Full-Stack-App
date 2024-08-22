@@ -17,6 +17,10 @@
   box-sizing: border-box;
 }
 
+input {
+  display: block;
+}
+
 .subjects {
   background-color: yellowgreen;
   margin-right: 10px;

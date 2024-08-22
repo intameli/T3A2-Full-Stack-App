@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 
-export function NavBar() {
+export function NavBar({ user }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -12,7 +12,7 @@ export function NavBar() {
   return (
     <div className="nav">
       <img src={logo} />
-      <Links />
+      <Links user={user} />
       {/* <FaBars
         size={30}
         onClick={toggleMenu}
@@ -24,20 +24,28 @@ export function NavBar() {
       /> */}
       {menuOpen && (
         <div className="menu">
-          <Links />
+          <Links user={user} />
         </div>
       )}
     </div>
   );
 }
 
-const Links = () => {
+const Links = ({ user }) => {
   return (
     <>
       <NavLink to="/">Tutors</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/signup">Sign Up</NavLink>
-      <NavLink to="/dashboard">Dashboard</NavLink>
+      {user ? (
+        <>
+          <NavLink to="/profile">Profile</NavLink>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+        </>
+      ) : (
+        <>
+          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/signup">Sign Up</NavLink>
+        </>
+      )}
     </>
   );
 };
