@@ -1,18 +1,18 @@
 import { useParams, useNavigate } from "react-router-dom";
-
-const tutor = {
-  _id: "66c4b53bb79a98a75e773d52",
-  name: "Bill",
-  subjects: ["English", "French", "History"],
-  rate: 40,
-  createdAt: "2024-08-20T15:24:43.508Z",
-  updatedAt: "2024-08-20T15:24:43.508Z",
-  __v: 0,
-};
+import { useFetchData } from "../hooks/useFetchData";
 
 export function TutorPage() {
   const { id } = useParams();
   const nav = useNavigate();
+  const { data, loading, error } = useFetchData(`/tutor/${id}`);
+  const tutor = data;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <div className="tutorpage">
       <h3>{tutor.name}</h3>

@@ -1,20 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Subjects } from "./TutorPage";
+import { useFetchData } from "../hooks/useFetchData";
 
 export function TutorEdit() {
-  const [name, setName] = useState("Enter name here");
-  const [subject, setSubject] = useState("");
-  const [subjects, setSubjects] = useState([]);
-  const [rate, setRate] = useState(0);
+  const { id } = useParams();
+  const { data, loading, error } = useFetchData(`/tutor/${id}`);
   const nav = useNavigate();
-
-  function handleSubject() {
-    setSubjects([...subjects, subject]);
-    setSubject("");
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
   }
 
-  async function handleSubmit() {
+  async function handleNew(name, subjects, rate) {
     const response = await fetch("http://127.0.0.1:8000/api/tutor", {
       method: "POST", // Specify the HTTP method as POST
       headers: {
@@ -35,9 +35,40 @@ export function TutorEdit() {
     nav(-1);
   }
 
+  async function handleEdit(name, subjects, rate) {
+    return;
+  }
+
+  if (data) {
+    return <TutorEditChild tutor={data} handleFunc={handleEdit} />;
+  } else {
+    return <TutorEditChild tutor={{}} handleFunc={handleNew} />;
+  }
+}
+
+function TutorEditChild({ tutor, handleFunc }) {
+  const [name, setName] = useState(tutor?.name ?? "");
+  const [subject, setSubject] = useState("");
+  const [subjects, setSubjects] = useState(tutor?.subjects ?? []);
+  const [rate, setRate] = useState(tutor?.rate ?? "");
+  const nav = useNavigate();
+
+  function handleSubject() {
+    setSubjects([...subjects, subject]);
+    setSubject("");
+  }
+
+  async function handleSubmit() {
+    handleFunc(name, subjects, rate);
+  }
+
   return (
     <div className="tutorpage">
-      <input value={name} onChange={(e) => setName(e.target.value)} />
+      <input
+        placeholder="Tutor Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
       <button onClick={() => nav(-1)} className="x">
         Back
       </button>
