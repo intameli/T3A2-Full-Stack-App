@@ -30,8 +30,15 @@ router.get("/", async (req, res) => {
  *          200:
  *          description:  Sucessfully retrieved
  */
-router.get("/:id", (req, res) => {
-  res.json({ mssg: "Retrieve a single tutor" });
+router.get("/:id", async (req, res) => {
+  try {
+    // Fetch one tutor from MongoDB
+    const id = req.params.id;
+    const tutor = await Tutor.findOne({ _id: id });
+    res.json(tutor);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
 });
 
 /**
