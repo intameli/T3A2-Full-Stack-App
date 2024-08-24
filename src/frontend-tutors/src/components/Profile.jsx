@@ -19,7 +19,6 @@ export function Profile({ user, setUser }) {
 }
 
 export function ChangePassword({ user }) {
-  console.log(user);
   const [pass, setPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const { fetchData, loading, error } = useFetchFunc(
@@ -32,9 +31,7 @@ export function ChangePassword({ user }) {
     if (pass === confirmPass) {
       const json = { password: pass };
       const data = await fetchData(json);
-      if (error) {
-        setDisplayMessage(error);
-      } else {
+      if (data) {
         setDisplayMessage("Password successfully changed");
         setPass("");
         setConfirmPass("");
@@ -59,6 +56,8 @@ export function ChangePassword({ user }) {
           onChange={(e) => setConfirmPass(e.target.value)}
         />
         <button>Submit</button>
+        {error && <p>{error.message}</p>}
+        {loading && <p>Waiting for server...</p>}
         {displayMessage && <p>{displayMessage}</p>}
       </form>
     </div>
