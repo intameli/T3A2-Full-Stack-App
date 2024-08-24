@@ -10,7 +10,7 @@ export function Dashboard() {
     nav(`/dashboard/${id}`);
   }
   return (
-    <div className="card-container">
+    <>
       <div className="tutor-header">
         <h3>Dashboard</h3>
         <h4 className="sort">Sort/Filter options</h4>
@@ -22,7 +22,7 @@ export function Dashboard() {
         <div>Add new tutor</div>
       </div>
       <TutorCards handleClick={handleClick} />
-    </div>
+    </>
   );
 }
 
