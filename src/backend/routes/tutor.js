@@ -14,7 +14,15 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     // Fetch items from MongoDB
-    const tutors = await Tutor.find();
+    const subjects = req.query.subject;
+    let query = {};
+    if (subjects) {
+      // If subjects is a single string, convert it to an array
+      const subjectsArray = Array.isArray(subjects) ? subjects : [subjects];
+      // Filter tutors who teach any of the subjects in the array
+      query = { subjects: { $in: subjectsArray } };
+    }
+    const tutors = await Tutor.find(query);
     res.json(tutors);
   } catch (err) {
     res.status(500).json({ error: err });
