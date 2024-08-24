@@ -9,18 +9,13 @@ export function Tutors() {
     nav(`/tutor/${id}`);
   }
   return (
-    <div className="card-container">
+    <>
       <div className="tutor-header">
         <h3>All Tutors</h3>
         <h4 className="sort">Sort/Filter options</h4>
       </div>
-      {/* <div className="add">
-        <p>+</p>
-        <div>Add new tutor</div>
-      </div> */}
-
       <TutorCards handleClick={handleClick} />
-    </div>
+    </>
   );
 }
 
@@ -40,13 +35,13 @@ export function TutorCards({ handleClick }) {
   }, []);
 
   return (
-    <>
+    <div className="card-container">
       {tutors.map((tutor) => {
         return (
           <TutorCard key={tutor._id} tutor={tutor} handleClick={handleClick} />
         );
       })}
-    </>
+    </div>
   );
 }
 

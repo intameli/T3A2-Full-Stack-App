@@ -1,11 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFetchFunc } from "../hooks/useFetchFunc";
 
 export function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const nav = useNavigate();
-  const [error, setError] = useState(null);
+  const [errorLogin, setErrorLogin] = useState(null);
+  const { fetchData, loading, error } = useFetchFunc("/auth/recoverAccount");
+  const [message, setMessage] = useState(null);
+
+  async function handleRecovery() {
+    setMessage("Waiting for server to send email...");
+    const data = await fetchData({ email });
+    if (data) {
+      setMessage(data.message);
+    } else {
+      setMessage("");
+    }
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,40 +29,44 @@ export function Login({ setUser }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: email,
-          password: password,
+          email,
+          password,
         }),
       });
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem("user", data);
+        localStorage.setItem("user", JSON.stringify(data));
         setUser(data);
         nav("/profile");
       } else {
-        setError(data.message);
+        setErrorLogin(data.message);
       }
     }
     signUp();
   }
   return (
-    <form onSubmit={handleSubmit} className="login">
-      <h3>Login</h3>
-      <label>
-        Email
-        <input value={email} onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
+    <div className="login">
+      <form onSubmit={handleSubmit} className="login">
+        <h3>Login</h3>
+        <label>
+          Email
+          <input value={email} onChange={(e) => setEmail(e.target.value)} />
+        </label>
+        <label>
+          Password
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
 
-      <button>Login</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <div>Reset Password</div>
-    </form>
+        <button>Login</button>
+        {errorLogin && <p style={{ color: "red" }}>{errorLogin}</p>}
+      </form>
+      <button onClick={handleRecovery}>Reset Password</button>
+      {error && <p style={{ color: "red" }}>{error.message}</p>}
+      {message && <p>{message}</p>}
+    </div>
   );
 }
