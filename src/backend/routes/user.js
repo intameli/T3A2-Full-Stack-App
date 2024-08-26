@@ -34,7 +34,7 @@ router.get('/', (req,res) => {
  *          description: Failed to retrieve 
  */
 router.get('/:id', (req,res) => {
-    res.json({mssg: "Retrieve a single user"})
+    
 })
 
 /**
