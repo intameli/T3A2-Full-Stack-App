@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const User = require('../models/userModel');
 
 
 /**
@@ -14,13 +15,18 @@ const router = express.Router()
  *              description: Failed to retreive
  * 
  */
-router.get('/', (req,res) => {
-    res.send([
-        {id: 1, name: 'John', lastName: 'Doe', email: 'john@example.com'},
-        {id: 2, name: 'Jane', lastName: 'Doe', email: 'jane@example.com'},
-        {id: 3, name: 'Bob', lastName: 'Smith', email: 'bob@example.com'}
-    ])
-});
+router.get('/', async (req,res) => {
+    try {
+        const users = await User.find({});
+        
+        if (users.length === 0) {
+        return res.status(200).json({ message: 'No users found', users: [] });
+        }
+        res.json(users);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+    });
 
 /**
  *@swagger
@@ -34,7 +40,7 @@ router.get('/', (req,res) => {
  *          description: Failed to retrieve 
  */
 router.get('/:id', (req,res) => {
-    res.json({mssg: "Retrieve a single user"})
+    
 })
 
 /**
