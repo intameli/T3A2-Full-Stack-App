@@ -42,6 +42,66 @@ router.post("/signup", async (req, res, next) => {
   }
 });
 
+router.post("/signupadmin", async (req, res) => {
+  try {
+    const emailHome = req.body.email;
+    if (!emailHome) {
+      return res.status(400).json({ message: "Email is required" });
+    }
+
+    // Check if user already exists
+    const user = await User.findOne({ email: emailHome });
+    if (user) {
+      return res.status(400).json({ message: "User already exists" });
+    }
+
+    const password = Math.random().toString(36).slice(-8);
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    // Create new user
+    const newUser = await User.create({
+      ...req.body,
+      password: hashedPassword,
+      isAdmin: true,
+    });
+
+    // Generate JWT
+    const token = jwt.sign({ _id: newUser._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "1h",
+    });
+
+    // Send email with reset link
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: "noreply@brightacademics.com",
+      to: emailHome,
+      subject: "New Account",
+      text: `You are receiving this email because you now have access to an admin Bright Academics Account\n\n
+              Your new password is: ${password}\n\n
+              Please click on the following link to login and change your password: \n\n
+              http://${process.env.FRONTEND_URL}/login\n\n
+              If you were not expecting to recieve this email, please ignore this email.\n`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.status(201).json({
+      status: "success",
+      message: "You have successfully signed up a new user",
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 router.post("/login", async (req, res, next) => {
   try {
     const emailHome = req.body.email;

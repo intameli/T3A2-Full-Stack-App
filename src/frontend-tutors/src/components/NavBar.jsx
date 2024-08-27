@@ -39,6 +39,7 @@ const Links = ({ user }) => {
         <>
           <NavLink to="/profile">Profile</NavLink>
           <NavLink to="/dashboard">Dashboard</NavLink>
+          <NavLink to="/signupadmin">Add Admin</NavLink>
         </>
       ) : (
         <>

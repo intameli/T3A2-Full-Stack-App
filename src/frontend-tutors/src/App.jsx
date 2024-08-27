@@ -31,9 +31,9 @@ function App() {
         <Route path="dashboard/:id" element={<TutorEdit />} />
         <Route
           path="recoverAccount/:token"
-          // /api/auth/resetPassword/
           element={<ChangePasswordWrapper />}
         />
+        <Route path="signupadmin" element={<SignUp setUser={false} />} />
       </Routes>
     </>
   );

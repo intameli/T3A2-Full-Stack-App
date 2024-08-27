@@ -1,24 +1,26 @@
 import { useState, useEffect } from "react";
 
-export function useFetchFunc(url) {
+export function useFetchFunc(url, method) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const backend = "http://127.0.0.1:8000/api";
+  const backend = "http://127.0.0.1:8000";
   const fetchData = async (json) => {
     setLoading(true);
     setError(null);
     try {
       const response = await fetch(backend + url, {
-        method: "POST",
+        method: method,
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(json),
       });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || response.statusText);
+      }
       const result = await response.json();
-      if (!response.ok) throw new Error("Network response was not ok");
-      console.log(response);
       setError(null);
       setLoading(false);
       return result;

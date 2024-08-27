@@ -6,11 +6,11 @@ export function useFetchData(url) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (url === "/tutor/new") {
+    if (url === "/api/tutor/new") {
       setLoading(false);
       return;
     }
-    const backend = "http://127.0.0.1:8000/api";
+    const backend = "http://127.0.0.1:8000";
     const controller = new AbortController();
     const fetchData = async () => {
       try {

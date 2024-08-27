@@ -4,7 +4,7 @@ import { useFetchData } from "../hooks/useFetchData";
 export function TutorPage() {
   const { id } = useParams();
   const nav = useNavigate();
-  const { data, loading, error } = useFetchData(`/tutor/${id}`);
+  const { data, loading, error } = useFetchData(`/api/tutor/${id}`);
   const tutor = data;
   if (loading) {
     return <div>Loading...</div>;

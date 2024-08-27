@@ -1,21 +1,28 @@
-const mongoose = require('mongoose')
-require('mongoose-type-email')
-mongoose.SchemaTypes.Email.defaults.message = 'Email address is invalid'
+const mongoose = require("mongoose");
+require("mongoose-type-email");
+mongoose.SchemaTypes.Email.defaults.message = "Email address is invalid";
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-    firstname:{
-        type: String,
-        required: true,
+const userSchema = new Schema(
+  {
+    firstname: {
+      type: String,
+      required: true,
     },
-    lastname:{
-        type: String,
-        required: true,
+    lastname: {
+      type: String,
+      required: true,
     },
-    email:{type: mongoose.SchemaTypes.Email, required: true},
-    mobileNr:{type: String, match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/, },
-    password:{type: String, required: true}
-},{timestamps: true})
+    email: { type: mongoose.SchemaTypes.Email, required: true },
+    mobileNr: {
+      type: String,
+      match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/,
+    },
+    password: { type: String },
+    isAdmin: { type: Boolean, required: false },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model("User", userSchema);

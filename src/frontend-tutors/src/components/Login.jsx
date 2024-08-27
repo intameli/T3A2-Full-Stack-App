@@ -7,7 +7,10 @@ export function Login({ setUser }) {
   const [password, setPassword] = useState("");
   const nav = useNavigate();
   const [errorLogin, setErrorLogin] = useState(null);
-  const { fetchData, loading, error } = useFetchFunc("/auth/recoverAccount");
+  const { fetchData, loading, error } = useFetchFunc(
+    "/api/auth/recoverAccount",
+    "POST"
+  );
   const [message, setMessage] = useState(null);
 
   async function handleRecovery() {

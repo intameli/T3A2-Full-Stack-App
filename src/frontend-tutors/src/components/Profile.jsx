@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useFetchFunc } from "../hooks/useFetchFunc";
 
 export function Profile({ user, setUser }) {
+  console.log(user);
   const nav = useNavigate();
   function handleSignout() {
     localStorage.removeItem("user");
@@ -22,7 +23,8 @@ export function ChangePassword({ user }) {
   const [pass, setPass] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const { fetchData, loading, error } = useFetchFunc(
-    `/auth/changePassword/${user.token}`
+    `/api/auth/changePassword/${user.token}`,
+    "POST"
   );
   const [displayMessage, setDisplayMessage] = useState();
 
@@ -46,11 +48,17 @@ export function ChangePassword({ user }) {
       <h4>Change password</h4>
       <form className="login" onSubmit={handleSubmit}>
         <input
+          type="password"
+          required={true}
+          minLength="5"
           placeholder="New Password"
           value={pass}
           onChange={(e) => setPass(e.target.value)}
         />
         <input
+          type="password"
+          required={true}
+          minLength="5"
           placeholder="Confirm New Password"
           value={confirmPass}
           onChange={(e) => setConfirmPass(e.target.value)}
@@ -58,7 +66,7 @@ export function ChangePassword({ user }) {
         <button>Submit</button>
         {error && <p>{error.message}</p>}
         {loading && <p>Waiting for server...</p>}
-        {displayMessage && <p>{displayMessage}</p>}
+        {displayMessage && !error && <p>{displayMessage}</p>}
       </form>
     </div>
   );

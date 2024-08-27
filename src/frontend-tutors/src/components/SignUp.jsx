@@ -8,11 +8,19 @@ export function SignUp({ setUser }) {
   const [password, setPassword] = useState("");
   const nav = useNavigate();
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState(null);
+
+  let url = "http://127.0.0.1:8000/api/auth/signup";
+  let admin = false;
+  if (setUser === false) {
+    url = "http://127.0.0.1:8000/api/auth/signupadmin";
+    admin = true;
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
     async function signUp() {
-      const response = await fetch("http://127.0.0.1:8000/api/auth/signup", {
+      const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,11 +35,16 @@ export function SignUp({ setUser }) {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("user", JSON.stringify(data));
-        setUser(data);
-        nav("/profile");
+        if (setUser) {
+          setUser(data);
+          nav("/profile");
+        } else {
+          setMessage("Email has been sent with a new random password");
+        }
       } else {
         setError(data.error);
       }
+      console.log(data);
     }
     signUp();
   }
@@ -57,6 +70,7 @@ export function SignUp({ setUser }) {
       <label>
         Password
         <input
+          disabled={admin}
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -65,6 +79,7 @@ export function SignUp({ setUser }) {
 
       <button>Sign Up</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
+      {message && <p>{message}</p>}
     </form>
   );
 }
