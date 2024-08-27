@@ -20,7 +20,7 @@ router.get('/', async (req,res) => {
         const users = await User.find({});
         
         if (users.length === 0) {
-        return res.status(200).json({ message: 'No users found', users: [] });
+        return res.status(200).json({ message: 'No users found'});
         }
         res.json(users);
     } catch (err) {
@@ -39,8 +39,17 @@ router.get('/', async (req,res) => {
  *        400:
  *          description: Failed to retrieve 
  */
-router.get('/:id', (req,res) => {
-    
+router.get('/:id', async (req,res) => {
+    try {
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user);
+    } catch {
+        res.status(500).json({ message: err.message });
+    }
 })
 
 /**
@@ -66,8 +75,7 @@ router.get('/:id', (req,res) => {
  *          200:
  *          description:  Sucessfully retrieved user
  */
-router.post('/', (req,res) => {
-    res.json({mssg: "Create a new user"})
+router.post('/', async (req,res) => {
 })
 
 /**
@@ -79,8 +87,17 @@ router.post('/', (req,res) => {
  *          200:
  *          description:  Sucessfully Deleted
  */
-router.delete('/:id', (req,res) => {
-    res.json({mssg: "Remove a user"})
+router.delete('/:id', async (req,res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user);
+    } catch {
+        res.status(500).json({ message: err.message });
+    }
 })
 
 /**
