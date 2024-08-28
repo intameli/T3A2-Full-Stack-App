@@ -5,7 +5,10 @@ import { FaBars } from "react-icons/fa";
 
 export function NavBar({ user }) {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  let style = {};
+  if (menuOpen) {
+    style = { display: "grid" };
+  }
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -13,33 +16,23 @@ export function NavBar({ user }) {
     <div className="nav">
       <img src={logo} />
       <Links user={user} />
-      {/* <FaBars
-        size={30}
-        onClick={toggleMenu}
-        style={{
-          cursor: "pointer",
-          marginLeft: "auto",
-          gridColumnStart: 5,
-        }}
-      /> */}
-      {menuOpen && (
-        <div className="menu">
-          <Links user={user} />
-        </div>
-      )}
+      <div className="menu">
+        <FaBars size={30} onClick={toggleMenu} className="hamburg" />
+        {menuOpen && <Links user={user} style={style} />}
+      </div>
     </div>
   );
 }
 
-const Links = ({ user }) => {
+const Links = ({ user, style }) => {
   return (
-    <>
+    <div className="nav-links" style={style}>
       <NavLink to="/">Tutors</NavLink>
       {user ? (
         <>
           <NavLink to="/profile">Profile</NavLink>
-          <NavLink to="/dashboard">Dashboard</NavLink>
-          <NavLink to="/signupadmin">Add Admin</NavLink>
+          {user?.isAdmin && <NavLink to="/dashboard">Dashboard</NavLink>}
+          {user?.isAdmin && <NavLink to="/signupadmin">Add Admin</NavLink>}
         </>
       ) : (
         <>
@@ -47,6 +40,6 @@ const Links = ({ user }) => {
           <NavLink to="/signup">Sign Up</NavLink>
         </>
       )}
-    </>
+    </div>
   );
 };

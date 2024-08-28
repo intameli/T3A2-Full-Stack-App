@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Subjects } from "./TutorPage";
 import { useFetchData } from "../hooks/useFetchData";
 import { useFetchFunc } from "../hooks/useFetchFunc";
 
@@ -41,7 +40,6 @@ export function TutorEdit() {
 
 function TutorEditChild({ tutor, handleFunc = false }) {
   const [name, setName] = useState(tutor?.name ?? "");
-  const [subject, setSubject] = useState("");
   const [subjects, setSubjects] = useState(tutor?.subjects ?? []);
   const [rate, setRate] = useState(tutor?.rate ?? "");
   const nav = useNavigate();
@@ -75,11 +73,6 @@ function TutorEditChild({ tutor, handleFunc = false }) {
     deleteBtn = true;
   }
 
-  function handleSubject() {
-    setSubjects([...subjects, subject]);
-    setSubject("");
-  }
-
   async function handleSubmit() {
     handleFunc({ name, subjects, rate });
   }
@@ -95,11 +88,7 @@ function TutorEditChild({ tutor, handleFunc = false }) {
         <button onClick={() => nav(-1)} className="x">
           Back
         </button>
-        <div>
-          <input value={subject} onChange={(e) => setSubject(e.target.value)} />
-          <button onClick={handleSubject}>Add subject</button>
-          <Subjects subjects={subjects} />
-        </div>
+        <EditSubjects subjects={subjects} setSubjects={setSubjects} />
 
         <h2 className="rate">
           $<input value={rate} onChange={(e) => setRate(e.target.value)} />
@@ -121,5 +110,47 @@ function TutorEditChild({ tutor, handleFunc = false }) {
       {deleteLoading && <p>Waiting for server to delete tutor...</p>}
       {patchLoading && <p>Waiting for server to update tutor...</p>}
     </>
+  );
+}
+
+export function EditSubjects({ subjects, setSubjects }) {
+  const [subject, setSubject] = useState("");
+
+  return (
+    <div>
+      <input value={subject} onChange={(e) => setSubject(e.target.value)} />
+      <button
+        onClick={() => {
+          setSubjects([...subjects, subject]);
+          setSubject("");
+        }}
+      >
+        Add subject
+      </button>
+      <SubjectsRemovable subjects={subjects} setSubjects={setSubjects} />
+    </div>
+  );
+}
+
+export function SubjectsRemovable({ subjects, setSubjects }) {
+  let i = 1;
+
+  function remove(subject) {
+    setSubjects(subjects.filter((item) => item !== subject));
+  }
+  return (
+    <div>
+      <span style={{ fontWeight: "800" }}>Subjects: </span>
+      {subjects.map((s) => {
+        return (
+          <span key={i++} className="subjects">
+            {s}{" "}
+            <button className="remove-subject" onClick={() => remove(s)}>
+              x
+            </button>
+          </span>
+        );
+      })}
+    </div>
   );
 }

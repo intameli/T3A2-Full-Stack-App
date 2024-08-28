@@ -20,7 +20,12 @@ router.get("/", async (req, res) => {
       // If subjects is a single string, convert it to an array
       const subjectsArray = Array.isArray(subjects) ? subjects : [subjects];
       // Filter tutors who teach any of the subjects in the array
-      query = { subjects: { $in: subjectsArray } };
+      // query = { subjects: { $in: subjectsArray } };
+      query = {
+        subjects: {
+          $in: subjectsArray.map((subject) => new RegExp(`^${subject}$`, "i")),
+        },
+      };
     }
     const tutors = await Tutor.find(query);
     res.json(tutors);
@@ -87,7 +92,7 @@ router.delete("/:id", async (req, res) => {
       return res.status(404).json({ message: "Tutor not found" });
     }
 
-    res.json({ message: "Tutor deleted successfully"});
+    res.json({ message: "Tutor deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -107,7 +112,10 @@ router.patch("/:id", async (req, res) => {
     const { id } = req.params;
     const updateData = req.body;
 
-    const tutor = await Tutor.findByIdAndUpdate(id, updateData, { new: true, runValidators: true });
+    const tutor = await Tutor.findByIdAndUpdate(id, updateData, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!tutor) {
       return res.status(404).json({ message: "Tutor not found" });

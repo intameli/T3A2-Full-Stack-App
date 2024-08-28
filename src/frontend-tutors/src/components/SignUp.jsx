@@ -70,6 +70,7 @@ export function SignUp({ setUser }) {
       <label>
         Password
         <input
+          required={true}
           disabled={admin}
           type="password"
           value={password}

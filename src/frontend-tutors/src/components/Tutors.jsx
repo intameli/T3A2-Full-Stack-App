@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Subjects } from "./TutorPage";
-import { useNavigate } from "react-router-dom";
+import { EditSubjects } from "./TutorEdit";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export function Tutors() {
   const nav = useNavigate();
@@ -12,7 +13,7 @@ export function Tutors() {
     <>
       <div className="tutor-header">
         <h3>All Tutors</h3>
-        <h4 className="sort">Sort/Filter options</h4>
+        <Filter startingPath="/" />
       </div>
       <TutorCards handleClick={handleClick} />
     </>
@@ -21,10 +22,14 @@ export function Tutors() {
 
 export function TutorCards({ handleClick }) {
   const [tutors, setTutors] = useState([]);
+  const location = useLocation();
+  const queryString = location.search;
 
   useEffect(() => {
     async function fetchTutors() {
-      const response = await fetch("http://127.0.0.1:8000/api/tutor");
+      const response = await fetch(
+        `http://127.0.0.1:8000/api/tutor${queryString}`
+      );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -32,7 +37,7 @@ export function TutorCards({ handleClick }) {
       setTutors(data);
     }
     fetchTutors();
-  }, []);
+  }, [location.search]);
 
   return (
     <div className="card-container">
@@ -51,6 +56,39 @@ function TutorCard({ tutor, handleClick }) {
       <h3>{tutor.name}</h3>
       <h2 className="rate">${tutor.rate}/hr</h2>
       <Subjects subjects={tutor.subjects} />
+    </div>
+  );
+}
+
+export function Filter({ startingPath }) {
+  const [showFilter, setShowFilter] = useState(false);
+  const [subjects, setSubjects] = useState([]);
+  const nav = useNavigate();
+
+  function apply() {
+    if (subjects.length) {
+      let path = startingPath + "?";
+      for (const [index, subject] of subjects.entries()) {
+        if (index) path += "&";
+        path += `subject=${subject}`;
+      }
+      nav(path);
+    } else {
+      nav(startingPath);
+    }
+  }
+
+  return (
+    <div className="sort">
+      <button onClick={() => setShowFilter(!showFilter)}>
+        Filter by subjects
+      </button>
+      {showFilter && (
+        <>
+          <EditSubjects subjects={subjects} setSubjects={setSubjects} />
+          <button onClick={apply}>Apply Filters</button>
+        </>
+      )}
     </div>
   );
 }

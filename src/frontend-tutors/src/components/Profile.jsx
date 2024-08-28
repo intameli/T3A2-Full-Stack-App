@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useFetchFunc } from "../hooks/useFetchFunc";
 
 export function Profile({ user, setUser }) {
-  console.log(user);
   const nav = useNavigate();
   function handleSignout() {
     localStorage.removeItem("user");

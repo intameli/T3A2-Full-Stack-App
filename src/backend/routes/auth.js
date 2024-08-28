@@ -36,6 +36,7 @@ router.post("/signup", async (req, res, next) => {
       status: "success",
       message: "You have successfully signed up",
       token,
+      isAdmin: user?.isAdmin,
     });
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -131,7 +132,12 @@ router.post("/login", async (req, res, next) => {
       expiresIn: "1h",
     });
 
-    res.json({ status: "success", message: "Logged in successfully", token });
+    res.json({
+      status: "success",
+      message: "Logged in successfully",
+      token,
+      isAdmin: user?.isAdmin,
+    });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
