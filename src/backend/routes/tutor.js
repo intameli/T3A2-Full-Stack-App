@@ -20,14 +20,13 @@ router.get("/", async (req, res) => {
       // If subjects is a single string, convert it to an array
       const subjectsArray = Array.isArray(subjects) ? subjects : [subjects];
       // Filter tutors who teach any of the subjects in the array
-      // query = { subjects: { $in: subjectsArray } };
       query = {
         subjects: {
           $in: subjectsArray.map((subject) => new RegExp(`^${subject}$`, "i")),
         },
       };
     }
-    const tutors = await Tutor.find(query);
+    const tutors = await Tutor.find(query).select("-pdf -pdfMetaData -about");
     res.json(tutors);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -47,7 +46,18 @@ router.get("/:id", async (req, res) => {
   try {
     // Fetch one tutor from MongoDB
     const id = req.params.id;
-    const tutor = await Tutor.findOne({ _id: id });
+    const tutor = await Tutor.findOne({ _id: id }).select("-pdf");
+    res.json(tutor);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+});
+
+router.get("/pdf/:id", async (req, res) => {
+  try {
+    // Fetch only pdf in tutor from MongoDB
+    const id = req.params.id;
+    const tutor = await Tutor.findOne({ _id: id }).select("pdf");
     res.json(tutor);
   } catch (err) {
     res.status(500).json({ error: err });
@@ -65,9 +75,9 @@ router.get("/:id", async (req, res) => {
  */
 
 router.post("/", async (req, res) => {
-  const { name, subjects, rate } = req.body;
+  // const { name, subjects, rate } = req.body;
   try {
-    const tutor = await Tutor.create({ name, subjects, rate });
+    const tutor = await Tutor.create(req.body);
     res.status(200).json(tutor);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -84,6 +94,7 @@ router.post("/", async (req, res) => {
  *          description:  Sucessfully Deleted
  */
 router.delete("/:id", async (req, res) => {
+  console.log(req.body);
   try {
     const { id } = req.params;
     const tutor = await Tutor.findByIdAndDelete(id);

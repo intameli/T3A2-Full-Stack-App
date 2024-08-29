@@ -1,20 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-export function useFetchFunc(url, method) {
+export function useFetchFunc(path, method, token = false) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const backend = "http://127.0.0.1:8000";
-  const fetchData = async (json) => {
+  const backend_url = "http://127.0.0.1:8000";
+
+  const fetchData = async (json = false) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(backend + url, {
+      const response = await fetch(backend_url + path, {
         method: method,
         headers: {
-          "Content-Type": "application/json",
+          ...(json && { "Content-Type": "application/json" }),
+          ...(token && { "Authorization": `Bearer ${token}` }),
         },
-        body: JSON.stringify(json),
+        ...(json && { body: JSON.stringify(json) }),
       });
       if (!response.ok) {
         const errorData = await response.json();

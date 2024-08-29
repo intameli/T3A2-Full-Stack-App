@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
+import { Resume } from "./TutorEdit";
 
 export function TutorPage() {
   const { id } = useParams();
@@ -21,8 +22,8 @@ export function TutorPage() {
       </button>
       <Subjects subjects={tutor.subjects} />
       <h2 className="rate">${tutor.rate}/hr</h2>
-      <div>Link to view tutors resume</div>
-      <div>About tutor</div>
+      <Resume id={id} meta={tutor?.pdfMetaData} />
+      <div>{tutor?.about}</div>
     </div>
   );
 }

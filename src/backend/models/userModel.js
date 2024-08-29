@@ -15,10 +15,6 @@ const userSchema = new Schema(
       required: true,
     },
     email: { type: mongoose.SchemaTypes.Email, required: true },
-    mobileNr: {
-      type: String,
-      match: /^(\()?\d{3}(\))?(-|\s)?\d{3}(-|\s)\d{4}$/,
-    },
     password: { type: String },
     isAdmin: { type: Boolean, required: false },
   },

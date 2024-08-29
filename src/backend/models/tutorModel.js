@@ -43,6 +43,15 @@ const tutorSchema = new Schema(
       type: Number,
       required: true,
     },
+    pdf: {
+      type: String,
+    },
+    pdfMetaData: {
+      type: Object,
+    },
+    about: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

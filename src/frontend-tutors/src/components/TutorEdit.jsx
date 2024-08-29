@@ -6,7 +6,6 @@ import { useFetchFunc } from "../hooks/useFetchFunc";
 export function TutorEdit() {
   const { id } = useParams();
   const { data, loading, error } = useFetchData(`/api/tutor/${id}`);
-  const nav = useNavigate();
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -14,35 +13,18 @@ export function TutorEdit() {
     return <div>Error: {error.message}</div>;
   }
 
-  async function handleNew(tutorObj) {
-    const response = await fetch("http://127.0.0.1:8000/api/tutor", {
-      method: "POST", // Specify the HTTP method as POST
-      headers: {
-        "Content-Type": "application/json", // Indicate that you're sending JSON
-      },
-      body: JSON.stringify(tutorObj), // Convert data to JSON string
-    });
-
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-
-    const data = await response.json();
-    nav(-1);
-  }
-
-  if (data) {
-    return <TutorEditChild tutor={data} />;
-  } else {
-    return <TutorEditChild tutor={{}} handleFunc={handleNew} />;
-  }
+  return <TutorEditChild tutor={data || false} />;
 }
 
-function TutorEditChild({ tutor, handleFunc = false }) {
+function TutorEditChild({ tutor }) {
   const [name, setName] = useState(tutor?.name ?? "");
   const [subjects, setSubjects] = useState(tutor?.subjects ?? []);
   const [rate, setRate] = useState(tutor?.rate ?? "");
+  const [about, setAbout] = useState(tutor?.about ?? "");
+  const [pdf, setPdf] = useState(null);
   const nav = useNavigate();
+  const [removePdf, setRemovePdf] = useState(false);
+
   const {
     fetchData: patchFetch,
     loading: patchLoading,
@@ -53,7 +35,11 @@ function TutorEditChild({ tutor, handleFunc = false }) {
     loading: deleteLoading,
     error: deleteError,
   } = useFetchFunc(`/api/tutor/${tutor._id}`, "DELETE");
-  let deleteBtn = false;
+  const {
+    fetchData: postFetch,
+    loading: postLoading,
+    error: postError,
+  } = useFetchFunc(`/api/tutor/`, "POST");
 
   async function handleDelete() {
     const data = await deleteFetch();
@@ -62,19 +48,25 @@ function TutorEditChild({ tutor, handleFunc = false }) {
     }
   }
 
-  async function handleEdit(tutorObj) {
-    const data = await patchFetch(tutorObj);
+  async function handleSubmit() {
+    let tutorObj = { name, subjects, rate, about };
+    if (pdf) {
+      tutorObj.pdfMetaData = { name: pdf.name, size: pdf.size };
+      tutorObj.pdf = await pdfToString(pdf);
+    } else if (removePdf) {
+      tutorObj.pdfMetaData = {};
+      tutorObj.pdf = "";
+    }
+    let data;
+    if (tutor) {
+      data = await patchFetch(tutorObj);
+    } else {
+      console.log("yes");
+      data = await postFetch(tutorObj);
+    }
     if (data) {
       nav(-1);
     }
-  }
-  if (handleFunc === false) {
-    handleFunc = handleEdit;
-    deleteBtn = true;
-  }
-
-  async function handleSubmit() {
-    handleFunc({ name, subjects, rate });
   }
 
   return (
@@ -95,21 +87,61 @@ function TutorEditChild({ tutor, handleFunc = false }) {
           /hr
         </h2>
 
-        <div>Upload tutors resume</div>
-        <p style={{ height: "120px" }}>TBD</p>
+        <div>
+          <Resume id={tutor._id} meta={tutor?.pdfMetaData} />
+          <button onClick={() => setRemovePdf(true)}>Remove Resume</button>
+          {removePdf && <span>Will be removed on submit</span>}
+          <input type="file" onChange={(e) => setPdf(e.target.files[0])} />
+        </div>
+        <p style={{ height: "120px" }}>Fix CSS</p>
+        <input
+          placeholder="About Tutor"
+          value={about}
+          onChange={(e) => setAbout(e.target.value)}
+        />
         <button
           onClick={handleSubmit}
           style={{ height: "2rem", alignSelf: "end" }}
         >
           Submit
         </button>
-        {deleteBtn && <button onClick={handleDelete}>Delete</button>}
+        {tutor && <button onClick={handleDelete}>Delete</button>}
       </div>
       {deleteError && <p>{deleteError.message}</p>}
       {patchError && <p>{patchError.message}</p>}
+      {postError && <p>{postError.message}</p>}
       {deleteLoading && <p>Waiting for server to delete tutor...</p>}
       {patchLoading && <p>Waiting for server to update tutor...</p>}
+      {postLoading && <p>Waiting for server to create tutor...</p>}
     </>
+  );
+}
+
+export function Resume({ id, meta }) {
+  const { fetchData, loading, error } = useFetchFunc(
+    `/api/tutor/pdf/${id}`,
+    "GET"
+  );
+  const [link, setLink] = useState(null);
+
+  if (!meta) return <div>No Resume Available</div>;
+
+  async function handleClick() {
+    const data = await fetchData();
+    if (data) setLink(stringToPdf(data.pdf));
+  }
+  return (
+    <div>
+      <p>
+        {meta.name}, {meta.size} Bytes
+      </p>
+      <button onClick={handleClick}>Download resume</button>
+      {link && (
+        <a href={link} target="_blank">
+          View Resume
+        </a>
+      )}
+    </div>
   );
 }
 
@@ -153,4 +185,34 @@ export function SubjectsRemovable({ subjects, setSubjects }) {
       })}
     </div>
   );
+}
+
+function pdfToString(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64String = reader.result.split(",")[1];
+      resolve(base64String);
+    };
+
+    reader.onerror = (error) => {
+      reject(error);
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+function stringToPdf(base64) {
+  const binary = atob(base64); // Decode Base64
+  const array = [];
+  for (let i = 0; i < binary.length; i++) {
+    array.push(binary.charCodeAt(i));
+  }
+  const blob = new Blob([new Uint8Array(array)], { type: "application/pdf" });
+
+  // Create Object URL
+  const url = URL.createObjectURL(blob);
+  return url;
 }
