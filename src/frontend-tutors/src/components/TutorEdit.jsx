@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
 import { useFetchFunc } from "../hooks/useFetchFunc";
 
-export function TutorEdit() {
+export function TutorEdit({ user }) {
   const { id } = useParams();
   const { data, loading, error } = useFetchData(`/api/tutor/${id}`);
   if (loading) {
@@ -13,10 +13,10 @@ export function TutorEdit() {
     return <div>Error: {error.message}</div>;
   }
 
-  return <TutorEditChild tutor={data || false} />;
+  return <TutorEditChild tutor={data || false} user={user} />;
 }
 
-function TutorEditChild({ tutor }) {
+function TutorEditChild({ tutor, user }) {
   const [name, setName] = useState(tutor?.name ?? "");
   const [subjects, setSubjects] = useState(tutor?.subjects ?? []);
   const [rate, setRate] = useState(tutor?.rate ?? "");
@@ -29,17 +29,17 @@ function TutorEditChild({ tutor }) {
     fetchData: patchFetch,
     loading: patchLoading,
     error: patchError,
-  } = useFetchFunc(`/api/tutor/${tutor._id}`, "PATCH");
+  } = useFetchFunc(`/api/tutor/${tutor._id}`, "PATCH", user.token);
   const {
     fetchData: deleteFetch,
     loading: deleteLoading,
     error: deleteError,
-  } = useFetchFunc(`/api/tutor/${tutor._id}`, "DELETE");
+  } = useFetchFunc(`/api/tutor/${tutor._id}`, "DELETE", user.token);
   const {
     fetchData: postFetch,
     loading: postLoading,
     error: postError,
-  } = useFetchFunc(`/api/tutor/`, "POST");
+  } = useFetchFunc(`/api/tutor/`, "POST", user.token);
 
   async function handleDelete() {
     const data = await deleteFetch();

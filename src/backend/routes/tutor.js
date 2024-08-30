@@ -1,6 +1,9 @@
 const express = require("express");
 const Tutor = require("../models/tutorModel");
+const adminCheck = require("../adminCheck.js");
 const router = express.Router();
+
+router.use(adminCheck);
 
 /**
  *@swagger

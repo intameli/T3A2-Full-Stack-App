@@ -28,7 +28,7 @@ function App() {
           element={<Profile user={user} setUser={setUser} />}
         />
         <Route path="tutor/:id" element={<TutorPage />} />
-        <Route path="dashboard/:id" element={<TutorEdit />} />
+        <Route path="dashboard/:id" element={<TutorEdit user={user} />} />
         <Route
           path="recoverAccount/:token"
           element={<ChangePasswordWrapper />}
