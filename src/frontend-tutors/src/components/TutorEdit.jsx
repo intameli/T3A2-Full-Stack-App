@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
 import { useFetchFunc } from "../hooks/useFetchFunc";
+import { EditSubjects } from "./Subjects";
 
 export function TutorEdit({ user }) {
   const { id } = useParams();
@@ -89,12 +90,14 @@ function TutorEditChild({ tutor, user }) {
 
         <div>
           <Resume id={tutor._id} meta={tutor?.pdfMetaData} />
-          <button onClick={() => setRemovePdf(true)}>Remove Resume</button>
-          {removePdf && <span>Will be removed on submit</span>}
+          {removePdf ? (
+            <span>Will be removed on submit</span>
+          ) : (
+            <button onClick={() => setRemovePdf(true)}>Remove Resume</button>
+          )}
           <input type="file" onChange={(e) => setPdf(e.target.files[0])} />
         </div>
-        <p style={{ height: "120px" }}>Fix CSS</p>
-        <input
+        <textarea
           placeholder="About Tutor"
           value={about}
           onChange={(e) => setAbout(e.target.value)}
@@ -135,54 +138,14 @@ export function Resume({ id, meta }) {
       <p>
         {meta.name}, {meta.size} Bytes
       </p>
-      <button onClick={handleClick}>Download resume</button>
+      <button disabled={link} onClick={handleClick}>
+        Download resume
+      </button>
       {link && (
         <a href={link} target="_blank">
           View Resume
         </a>
       )}
-    </div>
-  );
-}
-
-export function EditSubjects({ subjects, setSubjects }) {
-  const [subject, setSubject] = useState("");
-
-  return (
-    <div>
-      <input value={subject} onChange={(e) => setSubject(e.target.value)} />
-      <button
-        onClick={() => {
-          setSubjects([...subjects, subject]);
-          setSubject("");
-        }}
-      >
-        Add subject
-      </button>
-      <SubjectsRemovable subjects={subjects} setSubjects={setSubjects} />
-    </div>
-  );
-}
-
-export function SubjectsRemovable({ subjects, setSubjects }) {
-  let i = 1;
-
-  function remove(subject) {
-    setSubjects(subjects.filter((item) => item !== subject));
-  }
-  return (
-    <div>
-      <span style={{ fontWeight: "800" }}>Subjects: </span>
-      {subjects.map((s) => {
-        return (
-          <span key={i++} className="subjects">
-            {s}{" "}
-            <button className="remove-subject" onClick={() => remove(s)}>
-              x
-            </button>
-          </span>
-        );
-      })}
     </div>
   );
 }

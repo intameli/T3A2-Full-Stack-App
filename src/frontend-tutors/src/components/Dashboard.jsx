@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { TutorCards } from "./Tutors";
 import { Filter } from "./Tutors";
 import { useNavigate } from "react-router-dom";

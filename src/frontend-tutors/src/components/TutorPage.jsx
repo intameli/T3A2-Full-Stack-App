@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
 import { Resume } from "./TutorEdit";
+import { Subjects } from "./Subjects";
 
 export function TutorPage() {
   const { id } = useParams();
@@ -24,22 +25,6 @@ export function TutorPage() {
       <h2 className="rate">${tutor.rate}/hr</h2>
       <Resume id={id} meta={tutor?.pdfMetaData} />
       <div>{tutor?.about}</div>
-    </div>
-  );
-}
-
-export function Subjects({ subjects }) {
-  let i = 1;
-  return (
-    <div>
-      <span style={{ fontWeight: "800" }}>Subjects: </span>
-      {subjects.map((s) => {
-        return (
-          <span key={i++} className="subjects">
-            {s}
-          </span>
-        );
-      })}
     </div>
   );
 }

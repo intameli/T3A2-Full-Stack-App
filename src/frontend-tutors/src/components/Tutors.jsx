@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { Subjects } from "./TutorPage";
-import { EditSubjects } from "./TutorEdit";
+import { useState } from "react";
+import { Subjects, EditSubjects } from "./Subjects";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useFetchData } from "../hooks/useFetchData";
 
 export function Tutors() {
   const nav = useNavigate();
@@ -21,27 +21,20 @@ export function Tutors() {
 }
 
 export function TutorCards({ handleClick }) {
-  const [tutors, setTutors] = useState([]);
   const location = useLocation();
   const queryString = location.search;
+  const { data, loading, error } = useFetchData(`/api/tutor${queryString}`);
 
-  useEffect(() => {
-    async function fetchTutors() {
-      const response = await fetch(
-        `http://127.0.0.1:8000/api/tutor${queryString}`
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      setTutors(data);
-    }
-    fetchTutors();
-  }, [location.search]);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <div className="card-container">
-      {tutors.map((tutor) => {
+      {data.map((tutor) => {
         return (
           <TutorCard key={tutor._id} tutor={tutor} handleClick={handleClick} />
         );
