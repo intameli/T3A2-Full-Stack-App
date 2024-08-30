@@ -36,19 +36,23 @@ export function EditSubjects({ subjects, setSubjects }) {
 }
 
 function SubjectsRemovable({ subjects, setSubjects }) {
-  let i = 1;
+  let key = 1;
 
-  function remove(subject) {
-    setSubjects(subjects.filter((item) => item !== subject));
+  function remove(e, index) {
+    e.preventDefault();
+    setSubjects(subjects.filter((s, i) => i !== index));
   }
   return (
     <div>
       <span style={{ fontWeight: "800" }}>Subjects: </span>
-      {subjects.map((s) => {
+      {subjects.map((s, index) => {
         return (
-          <span key={i++} className="subjects">
+          <span key={key++} className="subjects">
             {s}{" "}
-            <button className="remove-subject" onClick={() => remove(s)}>
+            <button
+              className="remove-subject"
+              onClick={(e) => remove(e, index)}
+            >
               x
             </button>
           </span>

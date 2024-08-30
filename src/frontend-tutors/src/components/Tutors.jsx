@@ -74,15 +74,6 @@ export function Filter({ startingPath }) {
     nav(path);
   }, [subjects]);
 
-  function apply(currentSubjects) {
-    let path = startingPath + "?";
-    for (const [index, subject] of currentSubjects.entries()) {
-      if (index) path += "&";
-      path += `subject=${subject}`;
-    }
-    nav(path);
-  }
-
   return (
     <div className="sort">
       <button onClick={() => setShowFilter(!showFilter)}>
