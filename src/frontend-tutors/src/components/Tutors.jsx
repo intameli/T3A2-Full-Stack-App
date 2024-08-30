@@ -1,18 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Subjects, EditSubjects } from "./Subjects";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useFetchData } from "../hooks/useFetchData";
 
 export function Tutors() {
   const nav = useNavigate();
+  const location = useLocation();
+  const queryString = location.search;
 
   function handleClick(id) {
     nav(`/tutor/${id}`);
   }
+
+  const title = queryString ? "Filtered Tutors" : "All Tutors";
   return (
     <>
       <div className="tutor-header">
-        <h3>All Tutors</h3>
+        <h3>{title}</h3>
         <Filter startingPath="/" />
       </div>
       <TutorCards handleClick={handleClick} />
@@ -54,21 +58,29 @@ function TutorCard({ tutor, handleClick }) {
 }
 
 export function Filter({ startingPath }) {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const subjectsArray = Array.from(searchParams.values());
   const [showFilter, setShowFilter] = useState(false);
-  const [subjects, setSubjects] = useState([]);
+  const [subjects, setSubjects] = useState(subjectsArray);
   const nav = useNavigate();
 
-  function apply() {
-    if (subjects.length) {
-      let path = startingPath + "?";
-      for (const [index, subject] of subjects.entries()) {
-        if (index) path += "&";
-        path += `subject=${subject}`;
-      }
-      nav(path);
-    } else {
-      nav(startingPath);
+  useEffect(() => {
+    let path = startingPath + "?";
+    for (const [index, subject] of subjects.entries()) {
+      if (index) path += "&";
+      path += `subject=${subject}`;
     }
+    nav(path);
+  }, [subjects]);
+
+  function apply(currentSubjects) {
+    let path = startingPath + "?";
+    for (const [index, subject] of currentSubjects.entries()) {
+      if (index) path += "&";
+      path += `subject=${subject}`;
+    }
+    nav(path);
   }
 
   return (
@@ -77,10 +89,7 @@ export function Filter({ startingPath }) {
         Filter by subjects
       </button>
       {showFilter && (
-        <>
-          <EditSubjects subjects={subjects} setSubjects={setSubjects} />
-          <button onClick={apply}>Apply Filters</button>
-        </>
+        <EditSubjects subjects={subjects} setSubjects={setSubjects} />
       )}
     </div>
   );
