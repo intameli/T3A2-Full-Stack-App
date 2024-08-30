@@ -40,7 +40,14 @@ const tutorSchema = new Schema(
       required: true,
     },
     rate: {
-      type: Number,
+      type: String,
+      validate: {
+        validator: function (value) {
+          return /^[0-9.]+$/.test(value);
+        },
+        message: (props) =>
+          `${props.value} is not a valid number string! It should only contain numbers and a period.`,
+      },
       required: true,
     },
     pdf: {

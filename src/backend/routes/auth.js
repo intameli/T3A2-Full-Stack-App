@@ -29,7 +29,7 @@ router.post("/signup", async (req, res, next) => {
 
     // Generate JWT
     const token = jwt.sign({ _id: newUser._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "1h",
+      expiresIn: "48h",
     });
 
     res.status(201).json({
@@ -129,7 +129,7 @@ router.post("/login", async (req, res, next) => {
 
     // Generate JWT
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET_KEY, {
-      expiresIn: "1h",
+      expiresIn: "48h",
     });
 
     res.json({

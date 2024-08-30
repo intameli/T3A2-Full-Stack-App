@@ -51,6 +51,11 @@ function TutorEditChild({ tutor, user }) {
 
   async function handleSubmit() {
     let tutorObj = { name, subjects, rate, about };
+    const value = /^\d*\.?\d+$/.test(tutorObj.rate)
+      ? parseFloat(tutorObj.rate)
+      : NaN;
+    tutorObj.rate = value.toFixed(2).toString();
+
     if (pdf) {
       tutorObj.pdfMetaData = { name: pdf.name, size: pdf.size };
       tutorObj.pdf = await pdfToString(pdf);

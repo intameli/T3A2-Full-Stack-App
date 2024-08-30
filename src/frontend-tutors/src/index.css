@@ -105,6 +105,18 @@ input[type="file"] {
   input[type="file"] {
     width: 80%;
   }
+  body {
+    padding-inline: 10px;
+  }
+  .tutorpage > div:nth-child(5) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .tutorpage > div:nth-child(6),
+  .tutorpage > textarea:nth-child(6) {
+    grid-column-end: 3;
+  }
 }
 
 /* dash add button styles */
@@ -170,7 +182,7 @@ input[type="file"] {
 }
 
 .rate input {
-  width: 50px;
+  width: 70px;
 }
 
 .tutorpage a {

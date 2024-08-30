@@ -22,7 +22,7 @@ export function TutorPage() {
         Back
       </button>
       <Subjects subjects={tutor.subjects} />
-      <h2 className="rate">${tutor.rate}/hr</h2>
+      <h3 className="rate">${tutor.rate}/hr</h3>
       <Resume id={id} meta={tutor?.pdfMetaData} />
       <div>{tutor?.about}</div>
     </div>
