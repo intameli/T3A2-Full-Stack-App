@@ -18,11 +18,11 @@ export function useFetchFunc(path, method, token = false) {
         },
         ...(json && { body: JSON.stringify(json) }),
       });
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || response.statusText);
-      }
       const result = await response.json();
+      if (!response.ok) {
+        // const errorData = await response.json();
+        throw new Error(result.error || result.message || response.statusText);
+      }
       setError(null);
       setLoading(false);
       return result;

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFetchFunc } from "../hooks/useFetchFunc";
 
 export function SignUp({ setUser }) {
   const [firstName, setFirstName] = useState("");
@@ -7,46 +8,62 @@ export function SignUp({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const nav = useNavigate();
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null);
+  // const [error, setError] = useState(null);
+  // const [message, setMessage] = useState(null);
 
-  let url = "http://127.0.0.1:8000/api/auth/signup";
+  let path = "/api/auth/signup";
   let admin = false;
   if (setUser === false) {
-    url = "http://127.0.0.1:8000/api/auth/signupadmin";
+    path = "/api/auth/signupadmin";
     admin = true;
   }
+  const {
+    fetchData: signup,
+    loading: message,
+    error,
+  } = useFetchFunc(path, "POST");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    async function signUp() {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstname: firstName,
-          lastname: lastName,
-          email: email,
-          password: password,
-        }),
-      });
-      const data = await response.json();
-      if (response.ok) {
-        localStorage.setItem("user", JSON.stringify(data));
-        if (setUser) {
-          setUser(data);
-          nav("/profile");
-        } else {
-          setMessage("Email has been sent with a new random password");
-        }
-      } else {
-        setError(data.error);
-      }
-      console.log(data);
+    const data = await signup({
+      firstname: firstName,
+      lastname: lastName,
+      email,
+      password,
+    });
+    if (data && setUser) {
+      localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
+      nav("/profile");
     }
-    signUp();
+    // async function signUp() {
+    //   const response = await fetch(url, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({
+    //       firstname: firstName,
+    //       lastname: lastName,
+    //       email: email,
+    //       password: password,
+    //     }),
+    //   });
+    //   const data = await response.json();
+    //   if (response.ok) {
+    //     localStorage.setItem("user", JSON.stringify(data));
+    //     if (setUser) {
+    //       setUser(data);
+    //       nav("/profile");
+    //     } else {
+    //       setMessage("Email has been sent with a new random password");
+    //     }
+    //   } else {
+    //     setError(data.error);
+    //   }
+    //   console.log(data);
+    // }
+    // signUp();
   }
   return (
     <form onSubmit={handleSubmit} className="login">
@@ -78,8 +95,8 @@ export function SignUp({ setUser }) {
       </label>
 
       <button>Sign Up</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {message && <p>{message}</p>}
+      {error && <p style={{ color: "red" }}>{error.message}</p>}
+      {message && <p>Waiting for server...</p>}
     </form>
   );
 }
