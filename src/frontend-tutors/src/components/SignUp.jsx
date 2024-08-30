@@ -54,7 +54,6 @@ export function SignUp({ setUser }) {
       <label>
         First Name
         <input
-          placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />

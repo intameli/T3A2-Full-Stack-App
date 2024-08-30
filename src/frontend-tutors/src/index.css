@@ -174,7 +174,7 @@ a:hover {
 .tutorpage {
   display: grid;
   grid-template-columns: 5fr 1fr;
-  gap: 0.5rem;
+  gap: 11px;
 }
 
 .tutorpage > div:nth-child(5) {
