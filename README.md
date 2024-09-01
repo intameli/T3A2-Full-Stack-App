@@ -571,4 +571,35 @@ Ensure that user data is securely transmitted (e.g., via HTTPS).
 Verify that sensitive data (like passwords) is encrypted.
 Check for any vulnerabilities that could lead to unauthorized access.
 
+## R4 Demonstrate your ability to work in a team
+
+### Use a recognised project management methodology
+
+Our team decided to use the Agile Methodology with a particular emphasis on Scrum instead of Kanban as it made sense approaching the product development from a fixed time frame view instead of ongoing.
+Sprint Planning:
+We adapted the ceremony of sprint planning into the first section of our assignment. Where we undertook the discussion and creation of user stories. As this project was only a couple of weeks in duration it was important to focus on the quality of the stories and viewing every few days as a new sprint. Until we had completed the release.
+
+Daily Standups:
+We undertook daily standups where we would check-in as a team to discuss.
+What did I do yesterday?
+What are we doing today?
+Any roadblocks? Was assistance needed and should we take it offline to discuss so that the standup wasn’t made excessively long in duration. We also participated in a larger daily standup with our Product Owner (Matt) reporting on the above each work day.
+
+Sprint Retrospective:
+We enacted a sprint retro after completing part a of assignment in an effort to review what had worked and what could be improved upon.
+
+### Use a recognised task delegation methodology
+
+As part of the scrum approach in the agile methodology we delegated tasks via the following:
+
+User Stories:
+Divided our work into user stories as part of our PI planning. These were small bite size feature deliverables. Which would enable us to produce increments of work. These stories were sorted and organized in the backlog for “each sprint”. This included undertaking a fist of five activity.
+
+Task Assignment:
+In our team in an effort to implement the spirit of Scrum wholly our members volunteered for tasks based on their expertise and workload. We are trying to approach the project as a self-organizing team where we encourage and support ownership and accountability.
+Task Tracking:
+Our board was shared amongst the team and due to our clear daily standups where we “spoke” to the board. We are able to effectively communicate and overcome any issues or roadblocks before they arise. It enabled the team to visualize and approach the project with clear accountability and an understanding of components and features that each team member was producing.
+
 ## List of Libraries used
+
+## Trello screenshots
