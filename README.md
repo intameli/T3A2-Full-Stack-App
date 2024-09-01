@@ -431,4 +431,144 @@ Mobile version looks identical but with hamburger menu
 
 # Part B Updates
 
-The final version of the full-stack web app
+## Links
+
+[GitHub](https://github.com/intameli/T3A2-Full-Stack-App)
+
+[Deployed Site](https://tutor.jacobasmith.com)
+
+## How to run locally
+
+For assignment markers wishing to run the site locally, the following .env file in required for the backend:
+
+```
+DB_URI='mongodb+srv://jacob:supersecret@cluster0.tqurfer.mongodb.net/'
+PORT=8000
+JWT_SECRET_KEY='secretkey123'
+EMAIL_USER='tutorapp00@gmail.com'
+EMAIL_PASSWORD='ybenfpwoxmvwjapn'
+FRONTEND_URL='localhost:5173'
+```
+
+Additionally, you can change the frontend to connect to the locally running backend by uncommenting the backend variable in both the useFetchData and useFetchFunc hooks (will also need to comment out old backend variable)
+
+## Site Changes
+
+The final version of the full-stack web app did not change much during development. The two main changes made from the initial designs were:
+
+- In order for new admin accounts to be created securely, an add admin page was added that is only visible to logged in admins. This page sends an email to the new admin with a random password. They can then login with that password and change it if they wish.
+
+- We decided not to show the tutor pages as a modal ontop of the tutor cards. It made more sense to give each tutor their own url based on their id with their own page. Makes the site more user friendly as links to tutor pages can be shared.
+
+## User Testing
+
+### Backend
+
+The backend was tested using Insomnia both in development and in production.
+
+Development Testing
+
+![backend dev test](./docs/test-dev.png)
+
+Production Testing
+
+![backend dev test](./docs/test-prod.png)
+
+### Frontend
+
+The frontend was continuously tested as features were added. User testing informed design changes as well. For example the filter component originally looked like this:
+
+![filter](./docs/filter.png)
+
+After the feature had been implemented and tested it became obvious that the "Apply Filters" button was not necessary and that pressing the "Add subject" button should apply the filters. Testing also revealed how automatic it is to press the enter key after typing into an input so the component was changed to use a form element to support this. Using the form element introduced when removing subjects as the button click events were propogating up to the form onSubmit event. User testing was vital in discovering this bug and fixing it.
+
+### User Acceptance Testing (UAT) Checklist for Tutor Platform MVP
+
+#### User Authentication
+
+User Registration
+
+Verify users can register with valid email and password.
+Confirm that passwords meet security requirements.
+Ensure confirmation email is received after registration.
+Validate that the confirmation link activates the account.
+
+User Login
+
+Verify users can log in with correct credentials.
+Confirm that an error message is displayed for incorrect credentials.
+Check that users are redirected to the dashboard after successful login.
+
+Password Recovery
+
+Ensure users can request a password reset link.
+Confirm the password reset link is sent to the registered email.
+Verify users can reset their password using the provided link.
+
+#### Profile Management
+
+Profile Update
+
+Verify users can change their password.
+Confirm changes are saved and reflected in the profile.
+
+#### Tutor Listing
+
+List Tutors
+
+Verify that tutors are listed with correct details (name, subjects, pricing).
+Ensure pagination works correctly for the list of tutors.
+
+#### Tutor Profile/Resume
+
+View Tutor Profile
+
+Ensure users can view the detailed profile of a tutor.
+Verify that subjects taught by the tutor are correctly displayed.
+Confirm the tutor’s qualifications and experience are accurately presented.
+
+#### Subjects and Pricing
+
+Subject and Pricing Information
+
+Verify that the subjects offered by tutors are listed correctly.
+Ensure that pricing information for each subject is accurate and visible.
+Search and Filter Functionality
+Search Tutors by Subject and Price
+
+Confirm users can search for tutors by entering subject keywords.
+Ensure that the search results match the entered subject keywords.
+
+#### Admin Dashboard
+
+Manage Employment Records
+
+Ensure admins can view all employment records of tutors.
+Verify that admins can add new employment records.
+Check that admins can update existing employment records.
+Confirm that admins can delete employment records and that all changes are logged.
+
+#### General
+
+Site Navigation
+
+Verify that navigation across the platform is smooth and intuitive.
+Ensure that all links and buttons are functional and lead to the correct pages.
+
+User Interface
+
+Check that the UI is responsive and displays correctly across different devices (desktop, tablet, mobile).
+Ensure that all text is legible, and elements are aligned and consistent across the platform.
+
+Performance
+
+Confirm that the platform loads quickly and performs well under normal user load.
+Test the platform’s behavior under peak load conditions (if possible).
+
+Security
+
+Ensure that user data is securely transmitted (e.g., via HTTPS).
+Verify that sensitive data (like passwords) is encrypted.
+Check for any vulnerabilities that could lead to unauthorized access.
+
+## List of Libraries used
