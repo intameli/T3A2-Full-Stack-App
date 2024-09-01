@@ -86,7 +86,7 @@ export function SignUp({ setUser }) {
       <label>
         Password
         <input
-          required={true}
+          minLength="5"
           disabled={admin}
           type="password"
           value={password}

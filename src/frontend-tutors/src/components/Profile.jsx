@@ -12,6 +12,7 @@ export function Profile({ user, setUser }) {
   return (
     <div className="profile">
       <h3>Profile</h3>
+      <p id="name">Welcome {user.name}</p>
       <button onClick={handleSignout}>Sign out</button>
       <ChangePassword user={user} />
     </div>

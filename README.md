@@ -62,8 +62,6 @@ Conventions Used:
   - Blockers
   - Done
 
-
-
 The following features make up our minimum viable product.
 
 <details>
@@ -430,3 +428,7 @@ Mobile version looks identical but with hamburger menu
 <a href="https://trello.com/b/wi2g4Wkf/full-stack-application" target="_blank">Trello Board - Full Stack Application</a>
 
 ---
+
+# Part B Updates
+
+The final version of the full-stack web app

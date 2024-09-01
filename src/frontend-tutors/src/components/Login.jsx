@@ -36,27 +36,6 @@ export function Login({ setUser }) {
       setUser(data);
       nav("/profile");
     }
-    // async function signUp() {
-    //   const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email,
-    //       password,
-    //     }),
-    //   });
-    //   const data = await response.json();
-    //   if (response.ok) {
-    //     localStorage.setItem("user", JSON.stringify(data));
-    //     setUser(data);
-    //     nav("/profile");
-    //   } else {
-    //     setErrorLogin(data.message);
-    //   }
-    // }
-    // signUp();
   }
   return (
     <div className="login">
@@ -64,17 +43,22 @@ export function Login({ setUser }) {
         <h3>Login</h3>
         <label>
           Email
-          <input value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </label>
         <label>
           Password
           <input
+            name="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button>Login</button>
+        <button id="submit">Login</button>
         {loginLoading && <p>Waiting for server...</p>}
         {errorLogin && <p style={{ color: "red" }}>{errorLogin.message}</p>}
       </form>

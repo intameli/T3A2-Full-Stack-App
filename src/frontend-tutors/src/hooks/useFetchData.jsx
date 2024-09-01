@@ -10,8 +10,9 @@ export function useFetchData(url) {
       setLoading(false);
       return;
     }
-    // const backend = "http://127.0.0.1:8000";
-    const backend = "https://t3a2-full-stack-app.onrender.com";
+    const backend = "http://127.0.0.1:8000";
+    // const backend = "https://t3a2-full-stack-app.onrender.com";
+
     const controller = new AbortController();
     const fetchData = async () => {
       try {

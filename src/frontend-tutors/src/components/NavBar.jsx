@@ -13,14 +13,14 @@ export function NavBar({ user }) {
     setMenuOpen(!menuOpen);
   };
   return (
-    <div className="nav">
+    <nav className="nav">
       <img src={logo} />
       <Links user={user} />
       <div className="menu">
         <FaBars size={30} onClick={toggleMenu} className="hamburg" />
         {menuOpen && <Links user={user} style={style} />}
       </div>
-    </div>
+    </nav>
   );
 }
 
@@ -36,7 +36,9 @@ const Links = ({ user, style }) => {
         </>
       ) : (
         <>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink id="loginid" to="/login">
+            Login
+          </NavLink>
           <NavLink to="/signup">Sign Up</NavLink>
         </>
       )}

@@ -95,9 +95,13 @@ function TutorEditChild({ tutor, user }) {
 
         <div>
           <Resume id={tutor._id} meta={tutor?.pdfMetaData} />
-          {removePdf ? (
-            <span>Will be removed on submit</span>
-          ) : (
+          {removePdf && (
+            <div>
+              <button onClick={() => setRemovePdf(false)}>Undo</button>{" "}
+              <span>Will be removed on submit</span>
+            </div>
+          )}
+          {!removePdf && tutor && tutor.pdfMetaData && (
             <button onClick={() => setRemovePdf(true)}>Remove Resume</button>
           )}
           <input type="file" onChange={(e) => setPdf(e.target.files[0])} />

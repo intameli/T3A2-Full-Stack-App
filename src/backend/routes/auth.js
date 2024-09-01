@@ -25,6 +25,7 @@ router.post("/signup", async (req, res, next) => {
     const newUser = await User.create({
       ...req.body,
       password: hashedPassword,
+      isAdmin: false,
     });
 
     // Generate JWT
@@ -36,7 +37,8 @@ router.post("/signup", async (req, res, next) => {
       status: "success",
       message: "You have successfully signed up",
       token,
-      isAdmin: user?.isAdmin,
+      isAdmin: false,
+      name: newUser.firstname,
     });
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -137,6 +139,7 @@ router.post("/login", async (req, res, next) => {
       message: "Logged in successfully",
       token,
       isAdmin: user?.isAdmin,
+      name: user.firstname,
     });
   } catch (err) {
     return res.status(500).json({ error: err.message });

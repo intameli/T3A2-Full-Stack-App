@@ -4,13 +4,14 @@ export function useFetchFunc(path, method, token = false) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const backend_url = "https://t3a2-full-stack-app.onrender.com";
+  // const backend = "https://t3a2-full-stack-app.onrender.com";
+  const backend = "http://127.0.0.1:8000";
 
   const fetchData = async (json = false) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(backend_url + path, {
+      const response = await fetch(backend + path, {
         method: method,
         headers: {
           ...(json && { "Content-Type": "application/json" }),
