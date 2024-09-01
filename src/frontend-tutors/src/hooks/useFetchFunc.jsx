@@ -4,8 +4,8 @@ export function useFetchFunc(path, method, token = false) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // const backend = "https://t3a2-full-stack-app.onrender.com";
-  const backend = "http://127.0.0.1:8000";
+  const backend = "https://t3a2-full-stack-app.onrender.com";
+  // const backend = "http://127.0.0.1:8000";
 
   const fetchData = async (json = false) => {
     setLoading(true);
