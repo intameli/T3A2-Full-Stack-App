@@ -8,17 +8,6 @@ const authRoutes = require("./routes/auth");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-// try {
-//   const m = await mongoose.connect(process.env.DB_URI);
-//   console.log(
-//     m.connection.readyState == 1
-//       ? "Mongoose connected"
-//       : "Mongoose failed to connect"
-//   );
-// } catch (err) {
-//   console.error(err);
-// }
-
 mongoose.connect(process.env.DB_URI).catch((err) => {
   console.log(err);
 });

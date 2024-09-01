@@ -579,7 +579,7 @@ Ensure that user data is securely transmitted (e.g., via HTTPS).
 Verify that sensitive data (like passwords) is encrypted.
 Check for any vulnerabilities that could lead to unauthorized access.
 
-## R4 Demonstrate your ability to work in a team
+## Project Management
 
 ### Use a recognised project management methodology
 
@@ -610,4 +610,42 @@ Our board was shared amongst the team and due to our clear daily standups where 
 
 ## List of Libraries used
 
-## Trello screenshots
+### Bcrypt
+
+Primarly utilised to complete hashin and salting of passwords which are entered in by users to create their account and reset their password. This way, the password is stored securely within the applications database.
+
+Hashin converts the password from plaintext to a hashed string which is than stored within the database. This can only be completed one way and the password cannot be reverse engineered to retrieve the password.
+
+Salting refers to a process which occurs prior to hashing the password. A unique property is added to ensure that the password remains unique within the database even in instances where passwords of users may be reused.
+
+### Cors
+
+Cors adds a layer of protection and securely allows individuals to access the application from ips which are not of the deployer. It works by permitting and specifying which domains can and cannot access the application. This is done by manipulating the headers of the request to ensure the right domains are accessing the resource.
+
+### Jsonwebtoken
+
+Is a libery which allows users to login and access specific resources within the application. This is done through two different process which include token generation and token verification. When a registered user logs into the application, Jsonwebtoken will be used to create a token which has the users information embedded in the token. Following this process, the token is verified each time they try to access a restricted route. The token is stored within the authorisation request in the headers and when this is completed, the api will scan this token to see if it meets the criteria set by the developer and the users information.
+
+### Mongoose
+
+This allows schemas to be created and utilised to ensure models of stored within the applications databse are done so in a convient and efficient manner. It allows for seemless communication between MongoDB databases and node.js application, allowed for models in databases to adhere to a strict guideline and defined structure. It also allows for middleware to be implemented within applications to run functions prior to operations within an API being executed. It also allows for complex and unique queries to be utilised to increase the efficiency of searches within the application.
+
+### Nodemailer
+
+Is a libary which allows emails to be sent directly from node applications. It allows customisable email content to be sent to multiple users and is commonly utilised to assist in the delivery of recover account emails to users who are wishing to reset their passwords. In the context of our application, this is exactly the context it is being utilised in and has been used accross two different routes in the backend.
+
+### Jest/Supertest/Vitest
+
+These are the libraries used to write the automated tests. Vitest is used on the frontend for integration tests allowing complex actions to be tested such as forms being filled in and pages being navigated. Supertest and Jest are used to write tests for the backend endpoints.
+
+### React-router-dom
+
+React-router-dom is used for routing within our SPA. The entire application is wrapped in the BrowserRouter component and routes are defined inside the App component using the Route component. Links to routes are handled using the NavLink component.
+
+### Express
+
+Is the main library utilised to conduct and build the back-end of our application. It is a web application framwork which provides features to build API's and enable developers to build server side code utilising JavaScript. Allows for effiency as the same programming language can be utilised for both ends of the application.
+
+### Dotenv
+
+Allows for the creation and management of environment variables to be utilised within an application. This is extremely important for security purposes, as well as the creation of configuration settings within the application. All variables are stored within a single .env file which is not pushed too Git. This practice enhances flexibility and security within the application.
