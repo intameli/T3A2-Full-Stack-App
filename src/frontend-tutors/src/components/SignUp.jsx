@@ -8,8 +8,7 @@ export function SignUp({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const nav = useNavigate();
-  // const [error, setError] = useState(null);
-  // const [message, setMessage] = useState(null);
+  const [adminMessage, setAdminMessage] = useState(null);
 
   let path = "/api/auth/signup";
   let admin = false;
@@ -36,34 +35,9 @@ export function SignUp({ setUser }) {
       setUser(data);
       nav("/profile");
     }
-    // async function signUp() {
-    //   const response = await fetch(url, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       firstname: firstName,
-    //       lastname: lastName,
-    //       email: email,
-    //       password: password,
-    //     }),
-    //   });
-    //   const data = await response.json();
-    //   if (response.ok) {
-    //     localStorage.setItem("user", JSON.stringify(data));
-    //     if (setUser) {
-    //       setUser(data);
-    //       nav("/profile");
-    //     } else {
-    //       setMessage("Email has been sent with a new random password");
-    //     }
-    //   } else {
-    //     setError(data.error);
-    //   }
-    //   console.log(data);
-    // }
-    // signUp();
+    if (!setUser && data) {
+      setAdminMessage("Email has been sent with a new random password");
+    }
   }
   return (
     <form onSubmit={handleSubmit} className="login">
@@ -97,6 +71,7 @@ export function SignUp({ setUser }) {
       <button>Sign Up</button>
       {error && <p style={{ color: "red" }}>{error.message}</p>}
       {message && <p>Waiting for server...</p>}
+      {adminMessage && <p>{adminMessage}</p>}
     </form>
   );
 }

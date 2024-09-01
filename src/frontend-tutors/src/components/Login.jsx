@@ -6,7 +6,6 @@ export function Login({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const nav = useNavigate();
-  // const [errorLogin, setErrorLogin] = useState(null);
   const { fetchData, loading, error } = useFetchFunc(
     "/api/auth/recoverAccount",
     "POST"

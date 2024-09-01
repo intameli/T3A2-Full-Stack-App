@@ -437,6 +437,14 @@ Mobile version looks identical but with hamburger menu
 
 [Deployed Site](https://tutor.jacobasmith.com)
 
+## Admin Account
+
+To view the full functionality of the site an admin account is needed. Use the following account to login as an admin:
+
+Email: tutorapp00@gmail.com
+
+Password: admin2
+
 ## How to run locally
 
 For assignment markers wishing to run the site locally, the following .env file in required for the backend:

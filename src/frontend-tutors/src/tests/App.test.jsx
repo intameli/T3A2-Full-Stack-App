@@ -18,6 +18,7 @@ describe("App Component", () => {
     expect(h3).toHaveTextContent("All Tutors");
   });
 
+  //designed for integration with locally running backend
   it("login integration test", async () => {
     const { container } = render(
       <BrowserRouter>
